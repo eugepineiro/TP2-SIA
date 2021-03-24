@@ -10,7 +10,6 @@ class Item(ABC):
         self.resistence = resistence
         self.life = life
         
-    
     def getForce(self):
         return self.force  
     
@@ -25,4 +24,11 @@ class Item(ABC):
     
     def getLife(self):
         return self.life
+    
+    def __str__(self):
+        return 'Id: {id} - Force: {force} - Agility: {agility} - Expertise: {expertise} - Resistence: {resistence} - Life: {life}'.format(
+            id=self.id, force=self.force, agility=self.agility, expertise=self.expertise, resistence=self.resistence, life=self.life)
+
+    def __repr__(self):
+        return self.__str__()
         

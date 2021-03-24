@@ -2,15 +2,14 @@ from abc import ABC
 import math
 
 class Character(ABC):
-     
+    ATTACK_PERC = 0
+    DEFENSE_PERC = 0 
+
     def __init__(self, height, equipment):
         
         self.h = height              # uniform [1,3 ; 2] meters 
         self.equipment = equipment   # array d weapon, boots, helmet, gloves, armor   
 
-        self.ATTACK_PERC = 0
-        self.DEFENSE_PERC = 0
-        
         self.ATM = self.getATM()
         self.DEM = self.getDEM()
 
