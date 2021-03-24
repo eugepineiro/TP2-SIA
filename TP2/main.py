@@ -2,7 +2,7 @@
 # el mejor personaje --> genes: h, equipent
 # poblacion: n personajes --> QUIERO EL FITNESS --> elegir algun alg genetico y aplicar mutacion o cruce 
 
-import json
+import json, csv
 from Characters.warrior import Warrior
 from Characters.archer import Archer
 from Characters.defender import Defender
@@ -13,6 +13,9 @@ from Items.gloves import Gloves
 from Items.helmet import Helmet
 from Items.weapon import Weapon
 
+with open("file.tsv") as fd:
+    rd = csv.reader(fd, delimiter="\t", quotechar='"')
+    line = rd[3]
 equipment = [Weapon(0,0,0,0,0,0), Boots(0,0,0,0,0,0), Helmet(0,0,0,0,0,0), Gloves(0,0,0,0,0,0), Armor(0,0,0,0,0,0)]
 warrior = Warrior(1.5, equipment)
 
