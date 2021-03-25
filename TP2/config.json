@@ -1,9 +1,10 @@
 {
-    "class": "",
+    "class": "warrior",
     "crossover": "",  
     "mutation": " ",
-    "selection_method": "", 
+    "selection_method": "elite", 
     "implementation": "",
     "end": "",
-    "population_amount": 1000
+    "population_amount": 100, 
+    "individuals_amount": 150
 }

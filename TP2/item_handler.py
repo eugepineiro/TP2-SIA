@@ -20,7 +20,7 @@ class ItemHandler:
     def getEquipment(self):
         equipment = []
 
-        for item_constant, tup in self.file_map.items():
+        for items_path, tup in self.file_map.items():
             df = tup[0]
             item_class = tup[1]
 

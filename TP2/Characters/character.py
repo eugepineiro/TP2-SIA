@@ -5,8 +5,9 @@ class Character(ABC):
     ATTACK_PERC = 0
     DEFENSE_PERC = 0 
 
-    def __init__(self, height, equipment):
+    def __init__(self, id, height, equipment):
         
+        self.id = id
         self.h = height              # uniform [1,3 ; 2] meters 
         self.equipment = equipment   # array d weapon, boots, helmet, gloves, armor   
 
@@ -42,4 +43,21 @@ class Character(ABC):
 
     def calculateDefense(self):
         return (self.resistence + self.expertise) * self.life * self.DEM
-        
+
+    def __eq__(self, other):
+        return (isinstance(other, self.__class__) and other.id == self.id)
+
+    def __hash__(self):
+        return hash(self.id)
+
+    def __lt__(self, other):
+        return self.fitness > other.fitness
+    
+    def __le__(self, other):
+        return self.fitness >= other.fitness
+
+    def __str__(self):
+        return '(Id: {id} - Fitness: {fitness})'.format(id=self.id, fitness=self.fitness)
+
+    def __repr__(self):
+        return self.__str__()
