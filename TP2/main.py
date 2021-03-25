@@ -20,9 +20,14 @@ from Characters.archer import Archer
 from Characters.defender import Defender
 from Characters.spy import Spy
 from item_handler import ItemHandler
-from Items.constants import ItemConstants
 
-file_list = [ (ItemConstants.WEAPON,'allitems/armas.tsv'), (ItemConstants.BOOTS,'allitems/botas.tsv'), (ItemConstants.HELMET,'allitems/cascos.tsv'), (ItemConstants.GLOVES,'allitems/guantes.tsv'), (ItemConstants.ARMOR,'allitems/pecheras.tsv')]
+from Items.armor import Armor
+from Items.boots import Boots
+from Items.gloves import Gloves
+from Items.helmet import Helmet
+from Items.weapon import Weapon
+
+file_list = [ ('TP2/allitems/armas.tsv', Weapon), ('TP2/allitems/botas.tsv', Boots), ('TP2/allitems/cascos.tsv', Helmet), ('TP2/allitems/guantes.tsv', Gloves), ('TP2/allitems/pecheras.tsv', Armor)]
 item_handler = ItemHandler(file_list) 
 
 equipment = item_handler.getEquipment()

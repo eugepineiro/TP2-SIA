@@ -4,5 +4,6 @@
     "mutation": " ",
     "selection_method": "", 
     "implementation": "",
-    "end": ""
+    "end": "",
+    "population_amount": 1000
 }
