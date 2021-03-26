@@ -60,7 +60,7 @@ class Character:
         return self.fitness >= other.fitness
 
     def __str__(self):
-        return '(Id: {id} - Fitness: {fitness} - Class: {char_class})'.format(id=self.id, fitness=self.fitness, char_class=self.character_class)
+        return '(Id: {id} - Fitness: {fitness} - Class: {char_class})\n'.format(id=self.id, fitness=self.fitness, char_class=self.character_class)
 
     def __repr__(self):
         return self.__str__()
