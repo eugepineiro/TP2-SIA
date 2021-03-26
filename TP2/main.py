@@ -27,6 +27,7 @@ from Items.boots import Boots
 from Items.gloves import Gloves
 from Items.helmet import Helmet
 from Items.weapon import Weapon
+from constants import *
 # Selection
 from methods.selections.elite import elite
 # Crossover
@@ -59,7 +60,7 @@ characters = []
 for i in range(population_amount):
     equipment = item_handler.getEquipment()
     char = None
-    height = random.uniform(1.3, 2)
+    height = random.uniform(MIN_HEIGHT, MAX_HEIGHT)
     char = Character(i, height, equipment,
                         CharacterClass[character_class.upper()])
     characters.append(char)
