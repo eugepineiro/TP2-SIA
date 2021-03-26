@@ -3,13 +3,13 @@ from Characters.character import Character
 
 def onePointCross(parents, char_class):
     i = 0
-    genes_cant = len(parents[0].equipment) + 1
+    genes_cant = len(parents[0].getEquipment()) + 1
     children = []
     parents1 = parents[0::2]
     parents2 = parents[1::2]
     for p1, p2 in zip(parents1, parents2):
-        genes1 = [p1.height]+p1.equipment
-        genes2 = [p2.height]+p2.equipment
+        genes1 = [p1.height]+p1.getEquipment()
+        genes2 = [p2.height]+p2.getEquipment()
         lotus = random.randint(1, genes_cant)
         desc_genes1 = genes1[:lotus] + genes2[lotus:]
         desc_genes2 = genes2[:lotus] + genes1[lotus:]

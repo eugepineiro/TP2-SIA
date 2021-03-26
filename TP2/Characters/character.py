@@ -1,4 +1,5 @@
 import math
+from constants import * 
 
 class Character:
 
@@ -6,22 +7,24 @@ class Character:
         
         self.id = id
         self.height = height              # uniform [1,3 ; 2] meters 
-        self.equipment = equipment   # array d weapon, boots, helmet, gloves, armor   
+        self.equipment = equipment   # dict de weapon, boots, helmet, gloves, armor   
         self.character_class = character_class
         self.ATM = self.getATM()
         self.DEM = self.getDEM()
 
-        self.force = self.getStat(100,list(map(lambda item: item.getForce(),self.equipment)))
-        self.agility = self.getStat(1,list(map(lambda item: item.getAgility(),self.equipment)))
-        self.expertise = self.getStat(0.6,list(map(lambda item: item.getExpertise(),self.equipment)))
-        self.resistance = self.getStat(1,list(map(lambda item: item.getresistance(),self.equipment)))
-        self.life = self.getStat(100,list(map(lambda item: item.getLife(),self.equipment)))
+        self.force = self.getStat(100,list(map(lambda item: item.getForce(),self.getEquipment())))
+        self.agility = self.getStat(1,list(map(lambda item: item.getAgility(),self.getEquipment())))
+        self.expertise = self.getStat(0.6,list(map(lambda item: item.getExpertise(),self.getEquipment())))
+        self.resistance = self.getStat(1,list(map(lambda item: item.getresistance(),self.getEquipment())))
+        self.life = self.getStat(100,list(map(lambda item: item.getLife(),self.getEquipment())))
         
         self.attack = self.calculateAttack()
         self.defense = self.calculateDefense()
         
         self.fitness = self.getFitness()
-        
+
+    def getEquipment(self):
+        return list(self.equipment.values())
         
     def getFitness(self):
         return self.character_class.attack_perc * self.attack + self.character_class.defense_perc * self.defense
@@ -40,6 +43,9 @@ class Character:
 
     def calculateDefense(self):
         return (self.resistance + self.expertise) * self.life * self.DEM
+
+    def setItem(item_class, new_item):
+        self.equipment[item_class] = new_item
 
     def __eq__(self, other):
         return (isinstance(other, self.__class__) and other.id == self.id)

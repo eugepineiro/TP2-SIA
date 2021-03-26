@@ -3,13 +3,27 @@
 #                      --> o aplico un delta
 # Tengo que definir una probabilidad de mutación Pm --> si se cumple esa Pm para mi individuo --> agarro un gen al azar y lo muto, sino no (puede pasar que no mute ningun individuo, no pasa nada)
 import random
+from .mutation_lib import MutationLib
+from Characters.character import Character
+from Characters.character_class import CharacterClass
+from constants import *
 
-def oneGenMutation(genes):
-    
-    gen_to_mutate = random.choice(genes) 
-    print(gen_to_mutate.__class__.__name__)
-    
-    
-    #Deberia tener guardados en el item_handler.py todas las botas, todos los helmets y asi para ahora agarrar uno random dependiendo de lo que sea el gen_to_mutate
-    
-    return individual
+
+def oneGenMutation(individual, item_handler):
+    equipment_dict = individual.equipment
+    height = individual.height
+
+    genes = [individual.height] + individual.getEquipment()
+    gen_to_mutate = random.choice(genes)
+    gen_class = gen_to_mutate.__class__.__name__
+
+    new_gen = MutationLib.getNewGen(gen_class, item_handler)
+    if gen_class == HEIGHT_CLASS:
+        height = new_gen
+    else:
+        equipment_dict[gen_class] = new_gen
+
+    aux = individual.__class__.__name__.upper()
+    mutated_individual = Character(height, equipment_dict, CharacterClass[aux])
+
+    return mutated_individual

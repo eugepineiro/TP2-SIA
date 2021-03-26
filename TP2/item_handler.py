@@ -1,5 +1,7 @@
 import pandas as pd
 import random
+from Items.boots import Boots
+from constants import *
 
 class ItemHandler: 
     
@@ -8,18 +10,17 @@ class ItemHandler:
         for file_tuple in file_list:
             try:
                 df = pd.read_csv(file_tuple[0],delimiter = "\t",skiprows = 1, names=["id","Fu","Ag","Ex","Re","Vi"], index_col="id")
-                self.file_map[file_tuple[0]] = (df, file_tuple[1])
+                self.file_map[file_tuple[1].__str__()] = (df, file_tuple[1])
             except:
                 print("cannot open %s" % file_tuple[0])
                 continue
 
     
     def getEquipment(self):
-        equipment = []
+        equipment = {}
 
-        for items_path, tup in self.file_map.items():
-            df = tup[0]
-            item_class = tup[1]
+        for class_name, tup in self.file_map.items():
+            df, item_class = tup
 
             random_int = self.getRandomNumber(len(df.index))
             row = df.loc[random_int]
@@ -31,12 +32,33 @@ class ItemHandler:
             life = row.Vi
 
             item = item_class(random_int, force, agility, expertise, resistance, life)
-            equipment.append(item)
+            equipment[class_name] = item
 
         return equipment
 
     def getRandomNumber(self,max_id):
         return random.randint(0,max_id)
+
+    def getRandomItem(self, class_name):
+        df, item_class = self.file_map[class_name]
+
+        random_int = self.getRandomNumber(len(df.index))
+        row = df.loc[random_int]
+
+        return item_class(random_int, row.Fu, row.Ag, row.Ex, row.Re, row.Vi)
+
     
-    #def getAllBoots():
-    #    return all_boots
+    def getRandomBoots(self):
+        return self.getRandomItem(BOOTS_CLASS)
+
+    def getRandomWeapon(self):
+        return self.getRandomItem(WEAPON_CLASS)
+    
+    def getRandomArmor(self):
+        return self.getRandomItem(ARMOR_CLASS)
+
+    def getRandomGloves(self):
+        return self.getRandomItem(GLOVES_CLASS)
+    
+    def getRandomHelmet(self):
+        return self.getRandomItem(HELMET_CLASS)
