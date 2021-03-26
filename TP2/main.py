@@ -30,7 +30,7 @@ from methods.selections.elite import elite
 from methods.mutations.one_gen_mutation import oneGenMutation
 from methods.crossovers.one_point_cross import onePointCross
 
-file_list = [('TP2/allitems/armas.tsv', Weapon), ('TP2/allitems/botas.tsv', Boots), ('TP2/allitems/cascos.tsv', Helmet), ('TP2/allitems/guantes.tsv', Gloves), ('TP2/allitems/pecheras.tsv', Armor)]
+file_list = [('TP2/allitems/armas-short.tsv', Weapon), ('TP2/allitems/botas-short.tsv', Boots), ('TP2/allitems/cascos-short.tsv', Helmet), ('TP2/allitems/guantes-short.tsv', Gloves), ('TP2/allitems/pecheras-short.tsv', Armor)]
 item_handler = ItemHandler(file_list) 
 data = None
 
@@ -55,7 +55,9 @@ with open('TP2/config.json','r') as json_file:
     
     # Parents Selection 
     parents = elite(characters, individuals_amount, population_amount)
-    print(onePointCross(parents, CharacterClass[character_class.upper()]))
+    parents1 = parents[0::2]
+    parents2 = parents[1::2]
+    print(onePointCross(parents1, parents2, CharacterClass[character_class.upper()]))
  
     # Pair parent for crossover 
     
