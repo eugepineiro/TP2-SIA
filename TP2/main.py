@@ -27,6 +27,7 @@ from Items.helmet import Helmet
 from Items.weapon import Weapon
 
 from methods.selections.elite import elite
+from methods.mutations.one_gen_mutation import oneGenMutation
 
 file_list = [('TP2/allitems/armas.tsv', Weapon), ('TP2/allitems/botas.tsv', Boots), ('TP2/allitems/cascos.tsv', Helmet), ('TP2/allitems/guantes.tsv', Gloves), ('TP2/allitems/pecheras.tsv', Armor)]
 item_handler = ItemHandler(file_list) 
@@ -40,7 +41,7 @@ with open('TP2/config.json','r') as json_file:
     individuals_amount = data['individuals_amount']
     selection_method = data["selection_method"]
 
-   
+    # Build Generation 0
     characters = []
 
     for i in range(population_amount):
@@ -49,9 +50,26 @@ with open('TP2/config.json','r') as json_file:
         height = random.uniform(1.3, 2)
         char = Character(i,height,equipment,CharacterClass[character_class.upper()])
         characters.append(char)
-        print(char)
+        #print(char)
     
+    # Parents Selection 
     parents = elite(characters, individuals_amount, population_amount)
+ 
+    # Pair parent for crossover 
+    
+    # Crossover --> get children  
+    
+    # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
+    genes = []
+    equipment = item_handler.getEquipment()
+    genes.append(height) #ESTO DSP LO BORRO !!!! TA HARDCODEADO PARA PROBAR MUTATION
+    for i in equipment:
+        genes.append(i)
+        
+    mutated_character = oneGenMutation(genes)
+    #print(mutated_character)
+    # Get new Generation
+        
 
 print(parents) 
 

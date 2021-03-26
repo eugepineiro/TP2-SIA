@@ -13,9 +13,6 @@ class ItemHandler:
                 print("cannot open %s" % file_tuple[0])
                 continue
 
-        # self.rd = self.open(filename)
-        # df = pd.read_csv("./allitems/"+filename+".tsv",delimiter = "\t",skiprows = 1, names=["id","Fu","Ag","Ex","Re","Vi"], index_col="id")
-        # self.row = df.loc[4]
     
     def getEquipment(self):
         equipment = []
@@ -30,13 +27,16 @@ class ItemHandler:
             force = row.Fu
             agility = row.Ag
             expertise = row.Ex
-            resistence = row.Re
+            resistance = row.Re
             life = row.Vi
 
-            item = item_class(random_int, force, agility, expertise, resistence, life)
+            item = item_class(random_int, force, agility, expertise, resistance, life)
             equipment.append(item)
 
         return equipment
 
     def getRandomNumber(self,max_id):
         return random.randint(0,max_id)
+    
+    #def getAllBoots():
+    #    return all_boots

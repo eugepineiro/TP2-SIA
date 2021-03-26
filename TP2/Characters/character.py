@@ -14,7 +14,7 @@ class Character:
         self.force = self.getStat(100,list(map(lambda item: item.getForce(),self.equipment)))
         self.agility = self.getStat(1,list(map(lambda item: item.getAgility(),self.equipment)))
         self.expertise = self.getStat(0.6,list(map(lambda item: item.getExpertise(),self.equipment)))
-        self.resistence = self.getStat(1,list(map(lambda item: item.getResistence(),self.equipment)))
+        self.resistance = self.getStat(1,list(map(lambda item: item.getresistance(),self.equipment)))
         self.life = self.getStat(100,list(map(lambda item: item.getLife(),self.equipment)))
         
         self.attack = self.calculateAttack()
@@ -39,7 +39,7 @@ class Character:
         return (self.agility + self.expertise) * self.force * self.ATM
 
     def calculateDefense(self):
-        return (self.resistence + self.expertise) * self.life * self.DEM
+        return (self.resistance + self.expertise) * self.life * self.DEM
 
     def __eq__(self, other):
         return (isinstance(other, self.__class__) and other.id == self.id)
