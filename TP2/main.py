@@ -28,6 +28,7 @@ from Items.weapon import Weapon
 
 from methods.selections.elite import elite
 from methods.mutations.one_gen_mutation import oneGenMutation
+from.methods.mutations.mutation_lib import MutationLib
 from methods.crossovers.one_point_cross import onePointCross
 
 file_list = [('TP2/allitems/armas.tsv', Weapon), ('TP2/allitems/botas.tsv', Boots), ('TP2/allitems/cascos.tsv', Helmet), ('TP2/allitems/guantes.tsv', Gloves), ('TP2/allitems/pecheras.tsv', Armor)]
@@ -40,7 +41,8 @@ with open('TP2/config.json','r') as json_file:
     character_class = data['class']
     population_amount = data['population_amount']
     individuals_amount = data['individuals_amount']
-    selection_method = data["selection_method"]
+    individual_mutation_probability = data['individual_mutation_probability']
+    selection_method = data["methods"]["selection"]
 
     # Build Generation 0
     characters = []
@@ -55,24 +57,23 @@ with open('TP2/config.json','r') as json_file:
     
     # Parents Selection 
     parents = elite(characters, individuals_amount, population_amount)
-    print(onePointCross(parents, CharacterClass[character_class.upper()]))
- 
+   
     # Pair parent for crossover 
     
     # Crossover --> get children  
-    
+    children = onePointCross(parents, CharacterClass[character_class.upper()])
+ 
     
     # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
-    # genes = []
-    # equipment = item_handler.getEquipment()
-
-    # genes.append(height) #ESTO DSP LO BORRO !!!! TA HARDCODEADO PARA PROBAR MUTATION
-    # for i in equipment:
-    #     genes.append(i)
-        
-    # mutated_character = oneGenMutation(genes)
-    # #print(mutated_character)
-    # # Get new Generation
+    
+    individual = children[0]
+    genes = [individual.height] + individual.equipment
+       
+    if individual_mutation_probability < MutationLib.getMutationProbability():
+        individual = oneGenMutation(genes)
+    print(mutated_individual)
+    
+    # Get new Generation
         
 
 # print(parents) 

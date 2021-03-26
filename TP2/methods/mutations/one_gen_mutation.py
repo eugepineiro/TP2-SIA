@@ -9,6 +9,7 @@ def oneGenMutation(genes):
     gen_to_mutate = random.choice(genes) 
     print(gen_to_mutate.__class__.__name__)
     
+    
     #Deberia tener guardados en el item_handler.py todas las botas, todos los helmets y asi para ahora agarrar uno random dependiendo de lo que sea el gen_to_mutate
     
-    return 1 #return new_individual
+    return individual
