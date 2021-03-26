@@ -28,8 +28,9 @@ from Items.weapon import Weapon
 
 from methods.selections.elite import elite
 from methods.mutations.one_gen_mutation import oneGenMutation
-from.methods.mutations.mutation_lib import MutationLib
+from methods.mutations.mutation_lib import MutationLib
 from methods.crossovers.one_point_cross import onePointCross
+from methods.implementations.fill_all import fill_all
 
 file_list = [('TP2/allitems/armas-short.tsv', Weapon), ('TP2/allitems/botas-short.tsv', Boots), ('TP2/allitems/cascos-short.tsv', Helmet), ('TP2/allitems/guantes-short.tsv', Gloves), ('TP2/allitems/pecheras-short.tsv', Armor)]
 item_handler = ItemHandler(file_list) 
@@ -44,42 +45,47 @@ with open('TP2/config.json','r') as json_file:
     individual_mutation_probability = data['individual_mutation_probability']
     selection_method = data["methods"]["selection"]
 
-    # Build Generation 0
-    characters = []
+# Build Generation 0
+characters = []
 
-    for i in range(population_amount):
-        equipment = item_handler.getEquipment()
-        char = None
-        height = random.uniform(1.3, 2)
-        char = Character(i,height,equipment,CharacterClass[character_class.upper()])
-        characters.append(char)
-        #print(char)
-    
-    # Parents Selection 
-    parents = elite(characters, individuals_amount, population_amount)
-    parents1 = parents[0::2]
-    parents2 = parents[1::2]
-    print(onePointCross(parents1, parents2, CharacterClass[character_class.upper()]))
- 
-    # Pair parent for crossover 
-    
-    # Crossover --> get children  
-    children = onePointCross(parents, CharacterClass[character_class.upper()])
- 
-    
-    # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
-    
-    individual = children[0]
-    genes = [individual.height] + individual.equipment
-       
-    if individual_mutation_probability < MutationLib.getMutationProbability():
-        individual = oneGenMutation(genes)
-    print(mutated_individual)
-    
-    # Get new Generation
-        
+for i in range(population_amount):
+    equipment = item_handler.getEquipment()
+    char = None
+    height = random.uniform(1.3, 2)
+    char = Character(i,height,equipment,CharacterClass[character_class.upper()])
+    characters.append(char)
+    #print(char)
 
-    character = fill_all(characters)
+# Parents Selection 
+print("-------------------- SELECTION ----------------------")
+parents = elite(characters, individuals_amount, population_amount)
+parents1 = parents[0::2]
+parents2 = parents[1::2]
+# print(onePointCross(parents1, parents2, character_class.upper()))
+
+# Pair parent for crossover 
+
+# Crossover --> get children  
+print("-------------------- CROSSOVER ----------------------")
+
+children = onePointCross(parents1, parents2, character_class.upper())
+# print(children)
+
+
+# Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
+print("-------------------- MUTATION ----------------------")
+
+# individual = children[0]
+# genes = [individual.height] + individual.equipment
+    
+# if individual_mutation_probability < MutationLib.getMutationProbability():
+    # individual = oneGenMutation(genes)
+# print(mutated_individual)
+
+# Get new Generation
+print("-------------------- REPLACEMENT ----------------------")
+characters = fill_all(characters,children,individuals_amount, population_amount)
+print(characters)
 
 # print(parents) 
 

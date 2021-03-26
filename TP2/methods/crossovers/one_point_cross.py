@@ -1,5 +1,6 @@
 import random
 from Characters.character import Character
+from Characters.character_class import CharacterClass
 
 def onePointCross(parents1, parents2, char_class):
     i = 0
@@ -12,8 +13,8 @@ def onePointCross(parents1, parents2, char_class):
         desc_genes1 = genes1[:lotus] + genes2[lotus:]
         desc_genes2 = genes2[:lotus] + genes1[lotus:]
         
-        child1 = Character(i, desc_genes1[0], desc_genes1[1:], char_class)
-        child2 = Character(i+1, desc_genes2[0], desc_genes2[1:], char_class)
+        child1 = Character(i, desc_genes1[0], desc_genes1[1:], CharacterClass[char_class])
+        child2 = Character(i+1, desc_genes2[0], desc_genes2[1:], CharacterClass[char_class])
         i += 2
         children += [child1, child2]
     return children
