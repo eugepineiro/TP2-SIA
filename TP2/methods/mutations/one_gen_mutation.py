@@ -7,6 +7,7 @@ from .mutation_lib import MutationLib
 from Characters.character import Character 
 from constants import *
 
+# Selects one random gen to mutate
 
 def oneGenMutation(individual, item_handler):
     equipment_dict = individual.equipment
@@ -17,6 +18,7 @@ def oneGenMutation(individual, item_handler):
     gen_class = gen_to_mutate.__class__.__name__
 
     new_gen = MutationLib.getNewGen(gen_class, item_handler)
+   
     if gen_class == HEIGHT_CLASS:
         height = new_gen
     else:

@@ -82,10 +82,10 @@ print(individual)
 
 
 # Get new Generation
-print("-------------------- REPLACEMENT ----------------------")
+#print("-------------------- REPLACEMENT ----------------------")
  
 #characters = fill_all(characters, children,
- #                     individuals_amount, population_amount)
+#                     individuals_amount, population_amount)
 #print(characters)
 
 # print(parents)

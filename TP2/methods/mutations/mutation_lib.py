@@ -11,6 +11,7 @@ class MutationLib:
 
     def getNewGen(gen_class, item_handler):
 
+        print(gen_class)
         if gen_class == HEIGHT_CLASS:
             new_gen = random.uniform(MIN_HEIGHT, MAX_HEIGHT)
         else:
