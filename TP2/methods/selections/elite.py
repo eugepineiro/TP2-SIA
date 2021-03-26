@@ -1,7 +1,3 @@
-from Characters.warrior import Warrior
-from Characters.archer import Archer
-from Characters.defender import Defender
-from Characters.spy import Spy
 import math
 #Selects the k characters with better fitness, k = individuals_amount 
 

@@ -16,12 +16,10 @@
 # 5. CONDICION DE CORTE
 
 import json, csv, random
-from Characters.warrior import Warrior
-from Characters.archer import Archer
-from Characters.defender import Defender
-from Characters.spy import Spy
 from item_handler import ItemHandler
 
+from Characters.character import Character
+from Characters.character_class import CharacterClass
 from Items.armor import Armor
 from Items.boots import Boots
 from Items.gloves import Gloves
@@ -49,11 +47,9 @@ with open('TP2/config.json','r') as json_file:
         equipment = item_handler.getEquipment()
         char = None
         height = random.uniform(1.3, 2)
-        if character_class == 'warrior':
-            char = Warrior(i,height, equipment)
-
+        char = Character(i,height,equipment,CharacterClass[character_class.upper()])
         characters.append(char)
-
+        print(char)
     
     parents = elite(characters, individuals_amount, population_amount)
 

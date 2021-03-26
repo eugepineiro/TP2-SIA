@@ -1,1 +1,0 @@
-__all__ = ["archer","defender", "spy", "warrior"]

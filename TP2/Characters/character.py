@@ -1,16 +1,13 @@
-from abc import ABC
 import math
 
-class Character(ABC):
-    ATTACK_PERC = 0
-    DEFENSE_PERC = 0 
+class Character:
 
-    def __init__(self, id, height, equipment):
+    def __init__(self, id, height, equipment,character_class):
         
         self.id = id
         self.h = height              # uniform [1,3 ; 2] meters 
         self.equipment = equipment   # array d weapon, boots, helmet, gloves, armor   
-
+        self.character_class = character_class
         self.ATM = self.getATM()
         self.DEM = self.getDEM()
 
@@ -27,7 +24,7 @@ class Character(ABC):
         
         
     def getFitness(self):
-        return self.ATTACK_PERC * self.attack + self.DEFENSE_PERC * self.defense
+        return self.character_class.attack_perc * self.attack + self.character_class.defense_perc * self.defense
 
     def getATM(self):
         return 0.7 - pow(3*self.h-5, 4) + pow(3*self.h-5, 2) + self.h/4.0
@@ -57,7 +54,7 @@ class Character(ABC):
         return self.fitness >= other.fitness
 
     def __str__(self):
-        return '(Id: {id} - Fitness: {fitness})'.format(id=self.id, fitness=self.fitness)
+        return '(Id: {id} - Fitness: {fitness} - Class: {char_class})'.format(id=self.id, fitness=self.fitness, char_class=self.character_class)
 
     def __repr__(self):
         return self.__str__()
