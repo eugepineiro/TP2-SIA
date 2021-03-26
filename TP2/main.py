@@ -51,41 +51,42 @@ with open('TP2/config.json', 'r') as json_file:
 # Build Generation 0
 characters = []
 
-   for i in range(population_amount):
-        equipment = item_handler.getEquipment()
-        char = None
-        height = random.uniform(1.3, 2)
-        char = Character(i, height, equipment,
-                         CharacterClass[character_class.upper()])
-        characters.append(char)
-        # print(char)
+for i in range(population_amount):
+    equipment = item_handler.getEquipment()
+    char = None
+    height = random.uniform(1.3, 2)
+    char = Character(i, height, equipment,
+                        CharacterClass[character_class.upper()])
+    characters.append(char)
+    # print(char)
 
-    # Parents Selection
-    parents = elite(characters, individuals_amount, population_amount)
-    parents1 = parents[0::2]
-    parents2 = parents[1::2]
-    # Pair parent for crossover
+# Parents Selection
+parents = elite(characters, individuals_amount, population_amount)
+parents1 = parents[0::2]
+parents2 = parents[1::2]
+# Pair parent for crossover
 
-    # Crossover --> get children
-   # children = onePointCross(parents, CharacterClass[character_class.upper()])
+# Crossover --> get children
+# children = onePointCross(parents, CharacterClass[character_class.upper()])
 
-    # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
+# Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
 
-    individual = parents[0]  # CHILDREN !
-    print(individual)
-    print("---------------------------")
-    if individual_mutation_probability < MutationLib.getMutationProbability():
-        individual = oneGenMutation(individual, item_handler)
-    print(individual)
+individual = parents[0]  # CHILDREN !
+print(individual)
+print("---------------------------")
+if individual_mutation_probability < MutationLib.getMutationProbability():
+    individual = oneGenMutation(individual, item_handler)
+print(individual)
 
-    # Get new Generation
+# Get new Generation
 
 
 # Get new Generation
 print("-------------------- REPLACEMENT ----------------------")
-characters = fill_all(characters, children,
-                      individuals_amount, population_amount)
-print(characters)
+ 
+#characters = fill_all(characters, children,
+ #                     individuals_amount, population_amount)
+#print(characters)
 
 # print(parents)
 
