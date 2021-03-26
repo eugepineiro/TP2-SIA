@@ -30,6 +30,7 @@ from Items.weapon import Weapon
 
 from methods.selections.elite import elite
 from methods.mutations.one_gen_mutation import oneGenMutation
+from methods.mutations.complete_mutation import completeMutation
 from methods.mutations.mutation_lib import MutationLib
 from methods.crossovers.one_point_cross import onePointCross
 from methods.implementations.fill_all import fill_all
@@ -62,21 +63,26 @@ for i in range(population_amount):
 
 # Parents Selection
 parents = elite(characters, individuals_amount, population_amount)
+
+# Pair parent for crossover
 parents1 = parents[0::2]
 parents2 = parents[1::2]
-# Pair parent for crossover
 
 # Crossover --> get children
 # children = onePointCross(parents, CharacterClass[character_class.upper()])
 
-# Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
+# Mutate children
 
 individual = parents[0]  # CHILDREN !
 print(individual)
+print(individual.height)
+print(individual.equipment)
 print("---------------------------")
 if individual_mutation_probability < MutationLib.getMutationProbability():
-    individual = oneGenMutation(individual, item_handler)
+    individual = completeMutation(individual, item_handler)
 print(individual)
+print(individual.height)
+print(individual.equipment)
 
 # Get new Generation
 
