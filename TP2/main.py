@@ -18,23 +18,23 @@
 import json
 import csv
 import random
-from item_handler import ItemHandler
-
+# Population
 from Characters.character import Character
 from Characters.character_class import CharacterClass
+from item_handler import ItemHandler
 from Items.armor import Armor
 from Items.boots import Boots
 from Items.gloves import Gloves
 from Items.helmet import Helmet
 from Items.weapon import Weapon
-
+# Selection
 from methods.selections.elite import elite
-from methods.mutations.one_gen_mutation import oneGenMutation
-from methods.mutations.complete_mutation import completeMutation
-from methods.mutations.limited_multigen_mutation import limitedMultigenMutation
-from methods.mutations.uniform_multigen_mutation import uniformMultigenMutation
-from methods.mutations.mutation_lib import MutationLib
+# Crossover
 from methods.crossovers.one_point_cross import onePointCross
+# Mutation
+from data_handler import mutation
+from methods.mutations.mutation_lib import MutationLib
+# Impl
 from methods.implementations.fill_all import fill_all
 
 file_list = [('TP2/allitems/armas-short.tsv', Weapon), ('TP2/allitems/botas-short.tsv', Boots), ('TP2/allitems/cascos-short.tsv',
@@ -49,7 +49,9 @@ with open('TP2/config.json', 'r') as json_file:
     population_amount = data['population_amount']
     individuals_amount = data['individuals_amount']
     individual_mutation_probability = data['individual_mutation_probability']
-    selection_method = data["methods"]["selection"]
+    selection_method_a = data["methods"]["selection_a"]
+    selection_method_b = data["methods"]["selection_b"]
+    mutation_method = data["methods"]["mutation"]
 
 # Build Generation 0
 characters = []
@@ -77,14 +79,10 @@ parents2 = parents[1::2]
 
 individual = parents[0]  # CHILDREN !
 print(individual)
-print(individual.height)
-print(individual.equipment)
 print("---------------------------")
 if individual_mutation_probability < MutationLib.getMutationProbability():
-    individual = uniformMultigenMutation(individual, item_handler, individual_mutation_probability)
+    individual = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
 print(individual)
-print(individual.height)
-print(individual.equipment)
 
 # Get new Generation
 
