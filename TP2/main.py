@@ -28,6 +28,7 @@ from Items.weapon import Weapon
 
 from methods.selections.elite import elite
 from methods.mutations.one_gen_mutation import oneGenMutation
+from methods.crossovers.one_point_cross import onePointCross
 
 file_list = [('TP2/allitems/armas.tsv', Weapon), ('TP2/allitems/botas.tsv', Boots), ('TP2/allitems/cascos.tsv', Helmet), ('TP2/allitems/guantes.tsv', Gloves), ('TP2/allitems/pecheras.tsv', Armor)]
 item_handler = ItemHandler(file_list) 
@@ -54,24 +55,27 @@ with open('TP2/config.json','r') as json_file:
     
     # Parents Selection 
     parents = elite(characters, individuals_amount, population_amount)
+    print(onePointCross(parents, CharacterClass[character_class.upper()]))
  
     # Pair parent for crossover 
     
     # Crossover --> get children  
     
+    
     # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
-    genes = []
-    equipment = item_handler.getEquipment()
-    genes.append(height) #ESTO DSP LO BORRO !!!! TA HARDCODEADO PARA PROBAR MUTATION
-    for i in equipment:
-        genes.append(i)
+    # genes = []
+    # equipment = item_handler.getEquipment()
+
+    # genes.append(height) #ESTO DSP LO BORRO !!!! TA HARDCODEADO PARA PROBAR MUTATION
+    # for i in equipment:
+    #     genes.append(i)
         
-    mutated_character = oneGenMutation(genes)
-    #print(mutated_character)
-    # Get new Generation
+    # mutated_character = oneGenMutation(genes)
+    # #print(mutated_character)
+    # # Get new Generation
         
 
-print(parents) 
+# print(parents) 
 
 
 

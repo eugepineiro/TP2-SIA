@@ -5,7 +5,7 @@ class Character:
     def __init__(self, id, height, equipment,character_class):
         
         self.id = id
-        self.h = height              # uniform [1,3 ; 2] meters 
+        self.height = height              # uniform [1,3 ; 2] meters 
         self.equipment = equipment   # array d weapon, boots, helmet, gloves, armor   
         self.character_class = character_class
         self.ATM = self.getATM()
@@ -27,10 +27,10 @@ class Character:
         return self.character_class.attack_perc * self.attack + self.character_class.defense_perc * self.defense
 
     def getATM(self):
-        return 0.7 - pow(3*self.h-5, 4) + pow(3*self.h-5, 2) + self.h/4.0
+        return 0.7 - pow(3*self.height-5, 4) + pow(3*self.height-5, 2) + self.height/4.0
 
     def getDEM(self):
-        return 1.9 + pow(2.5*self.h-4.16, 4) - pow(2.5*self.h-4.16, 2) - 3*self.h/10.0 
+        return 1.9 + pow(2.5*self.height-4.16, 4) - pow(2.5*self.height-4.16, 2) - 3*self.height/10.0 
     
     def getStat(self, multiplier, stats):     
         return multiplier * math.tanh(0.01*sum(stats))
