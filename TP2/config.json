@@ -1,10 +1,14 @@
 {
     "class": "warrior",
-    "crossover": "",  
-    "mutation": " ",
-    "selection_method": "elite", 
+    "methods": {
+        "crossover": "",
+        "mutation": " ",
+        "selection": "elite"
+    },
+    "individual_mutation_probability": 0.2,
     "implementation": "",
-    "end": "",
-    "population_amount": 100, 
-    "individuals_amount": 150
+    "end_condition": "",
+    "population_amount": 100,
+    "individuals_amount": 150,
+    "generations": 5
 }
