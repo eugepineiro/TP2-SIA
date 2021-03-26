@@ -79,6 +79,8 @@ with open('TP2/config.json','r') as json_file:
     # Get new Generation
         
 
+    character = fill_all(characters)
+
 # print(parents) 
 
 
