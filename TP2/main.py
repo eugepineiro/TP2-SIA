@@ -32,6 +32,7 @@ from methods.selections.elite import elite
 from methods.mutations.one_gen_mutation import oneGenMutation
 from methods.mutations.complete_mutation import completeMutation
 from methods.mutations.limited_multigen_mutation import limitedMultigenMutation
+from methods.mutations.uniform_multigen_mutation import uniformMultigenMutation
 from methods.mutations.mutation_lib import MutationLib
 from methods.crossovers.one_point_cross import onePointCross
 from methods.implementations.fill_all import fill_all
@@ -80,7 +81,7 @@ print(individual.height)
 print(individual.equipment)
 print("---------------------------")
 if individual_mutation_probability < MutationLib.getMutationProbability():
-    individual = limitedMultigenMutation(individual, item_handler)
+    individual = uniformMultigenMutation(individual, item_handler, individual_mutation_probability)
 print(individual)
 print(individual.height)
 print(individual.equipment)
