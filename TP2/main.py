@@ -75,7 +75,7 @@ for i in range(1):
     print("-------------------- SELECTION ----------------------")
     #parents = elite(characters, individuals_amount, population_amount)
     parents = selection(selection_method_a, characters, individuals_amount,population_amount)
-    print(parents)
+    # print(parents)
     
     # Pair parent for crossover 
     parents1 = parents[0::2]
@@ -90,24 +90,19 @@ for i in range(1):
     # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
     print("-------------------- MUTATION ----------------------")
     individual = parents[0]  # CHILDREN !
-    print(individual)
+    # print(individual)
     print("---------------------------")
     if individual_mutation_probability < MutationLib.getMutationProbability():
         individual = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
-    print(individual)
+    # print(individual)
 
 
     # Get new Generation
     print("-------------------- REPLACEMENT ----------------------")
     characters = fill_parent(characters,children,individuals_amount, population_amount,replacement_a,replacement_b,B)
-    print(characters)
+    # print(characters)
     
-    plotter.update_plots(i,min(map(lambda character: character.fitness,characters)),0,0)
+    # plotter.update_plots(i,min(map(lambda character: character.fitness,characters)),0,0)
 
-    # a = random.randint(1,60)
-    # b = random.randint(1,60)
-    # c = random.randint(1,60)
-    
-    # plotter.update_plots(i,a,b,c)
-    
-plotter.show()
+
+# plotter.show()

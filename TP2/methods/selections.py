@@ -1,6 +1,7 @@
 import math
 import random
 from constants import * 
+from Characters.character import Character
 #Selects the k characters with better fitness, k = individuals_amount 
 
 def elite(characters, individuals_amount, population_amount):
@@ -21,12 +22,17 @@ def elite(characters, individuals_amount, population_amount):
         
     return new_characters
 
+def roulette(characters, individuals_amount):
+    return rouletteOrUniversal(ROULETTE_S, characters,individuals_amount)
+
+def universal(characters, individuals_amount):
+    return rouletteOrUniversal(UNIVERSAL_S, characters,individuals_amount)
+
 # Selects k (indidivuals_amount) individuals between q[i-1] < r[k] < q[i], r random [0,1)
 def rouletteOrUniversal(method,characters, individuals_amount): 
 
-    fitness = [] #array of tuples (acum_fitness, character)
+    fitness = [(0,None)] #array of tuples (acum_fitness, character)
     selected_characters = []
-
     total_fitness = getTotalFitness(characters)
 
     accum_fitness = 0
@@ -44,14 +50,12 @@ def rouletteOrUniversal(method,characters, individuals_amount):
         elif method == UNIVERSAL_S: 
             r = (i + rand)/individuals_amount
 
-
         for j in range(len(fitness)-1):
             accum1 = fitness[j][0]      # q[i-1]
             accum2 = fitness[j+1][0]    # q[1]
-
+            
             if accum1 < r and r <= accum2 :
                 selected_characters.append(fitness[j+1][1])
-
     return selected_characters
 
 def getTotalFitness(characters): 
@@ -60,3 +64,23 @@ def getTotalFitness(characters):
         total = total + c.fitness
 
     return total
+
+def ranking(characters,individuals_amount,population_amount):
+    characters.sort()
+    aux_chars = []
+    id_char_dict = {}
+
+    for i, character in enumerate(characters):
+        id_char_dict[character.id] = character
+        pseudo_fitness = (population_amount - i + 1) / population_amount
+        aux_char = Character(character.id, character.height, character.equipment,character.character_class)
+        aux_char.fitness = pseudo_fitness
+        aux_chars.append(aux_char)
+    
+    aux_chars = roulette(aux_chars,individuals_amount)
+    
+    ids = list(map(lambda char: char.id, aux_chars))
+    selected_chars = []
+    for id in ids:
+        selected_chars.append(id_char_dict.get(id))
+    return selected_chars
