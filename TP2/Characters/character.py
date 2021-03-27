@@ -6,7 +6,7 @@ class Character:
     def __init__(self, id, height, equipment,character_class):
         
         self.id = id
-        self.height = height              # uniform [1,3 ; 2] meters 
+        self.height = height         # uniform [1,3 ; 2] meters 
         self.equipment = equipment   # dict de weapon, boots, helmet, gloves, armor   
         self.character_class = character_class
         self.ATM = self.getATM()

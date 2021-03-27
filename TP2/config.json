@@ -2,8 +2,13 @@
     "class": "warrior",
     "methods": {
         "crossover": "",
-        "mutation": " ",
-        "selection": "elite"
+        "mutation": "complete",
+        "selection_a": "elite",
+        "selection_b": "elite",
+        "selection_prob": 0.7, 
+        "replacement_a": "elite",
+        "replacement_b": "elite",
+        "replacement_prob": 0.7
     },
     "individual_mutation_probability": 0.2,
     "implementation": "",
