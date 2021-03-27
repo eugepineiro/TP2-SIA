@@ -72,13 +72,13 @@ def ranking(characters,individuals_amount,population_amount):
 
     for i, character in enumerate(characters):
         id_char_dict[character.id] = character
-        pseudo_fitness = (population_amount - i + 1) / population_amount
+        pseudo_fitness = (population_amount - i - 1) / population_amount
         aux_char = Character(character.id, character.height, character.equipment,character.character_class)
         aux_char.fitness = pseudo_fitness
         aux_chars.append(aux_char)
     
     aux_chars = roulette(aux_chars,individuals_amount)
-    
+
     ids = list(map(lambda char: char.id, aux_chars))
     selected_chars = []
     for id in ids:
