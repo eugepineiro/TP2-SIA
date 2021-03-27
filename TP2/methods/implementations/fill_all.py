@@ -1,4 +1,4 @@
-from methods.selections.elite import elite
+from methods.selections import elite
 import math
 methods = {
     'elite': elite
