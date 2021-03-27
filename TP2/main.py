@@ -38,9 +38,12 @@ from data_handler import mutation
 from methods.mutations.mutation_lib import MutationLib
 # Impl
 from methods.implementations.fill_all import fill_all
+from methods.implementations.fill_parent import fill_parent
+
+import plotter
 
 file_list = [('TP2/allitems/armas-short.tsv', Weapon), ('TP2/allitems/botas-short.tsv', Boots), ('TP2/allitems/cascos-short.tsv', Helmet), ('TP2/allitems/guantes-short.tsv', Gloves), ('TP2/allitems/pecheras-short.tsv', Armor)]
-item_handler = ItemHandler(file_list)
+item_handler = ItemHandler(file_list) 
 data = None
 
 with open('TP2/config.json', 'r') as json_file:
@@ -53,6 +56,10 @@ with open('TP2/config.json', 'r') as json_file:
     selection_method_a = data["methods"]["selection_a"]
     selection_method_b = data["methods"]["selection_b"]
     mutation_method = data["methods"]["mutation"]
+    replacement_a = data["methods"]["replacement_a"]
+    replacement_b = data["methods"]["replacement_b"]
+    A = float(data["A"]) 
+    B = float(data["B"])
 
 # Build Generation 0
 characters = []
@@ -66,35 +73,44 @@ for i in range(population_amount):
     characters.append(char)
     # print(char)
 
-# Parents Selection
-parents = elite(characters, individuals_amount, population_amount)
+# plotter.init_plot()
 
-# Pair parent for crossover
-parents1 = parents[0::2]
-parents2 = parents[1::2]
+for i in range(10):
 
-# Crossover --> get children
-children = twoPointsCross(parents1, parents2, CharacterClass[character_class.upper()])
+    # Parents Selection 
+    print("-------------------- SELECTION ----------------------")
+    parents = elite(characters, individuals_amount, population_amount)
+    parents1 = parents[0::2]
+    parents2 = parents[1::2]
 
-# Mutate children
+    # Pair parent for crossover 
 
-individual = children[0]  # CHILDREN !
-print(individual)
-print("---------------------------")
-if individual_mutation_probability < MutationLib.getMutationProbability():
-    individual = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
-print(individual)
+    # Crossover --> get children  
+    print("-------------------- CROSSOVER ----------------------")
 
-# Get new Generation
+    children = twoPointsCross(parents1, parents2, CharacterClass[character_class.upper()])
+    # print(children)
 
 
-# Get new Generation
-#print("-------------------- REPLACEMENT ----------------------")
- 
-#characters = fill_all(characters, children,
-#                     individuals_amount, population_amount)
-#print(characters)
+    # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
+    print("-------------------- MUTATION ----------------------")
+    individual = parents[0]  # CHILDREN !
+    print(individual)
+    print("---------------------------")
+    if individual_mutation_probability < MutationLib.getMutationProbability():
+        individual = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
+    print(individual)
+    # Get new Generation
+    print("-------------------- REPLACEMENT ----------------------")
+    characters = fill_parent(characters,children,individuals_amount, population_amount,replacement_a,replacement_b,B)
+    print(characters)
+    
+    plotter.update_plots(i,min(map(lambda character: character.fitness,characters)),0,0)
 
-# print(parents)
-
-# print(parents)
+    # a = random.randint(1,60)
+    # b = random.randint(1,60)
+    # c = random.randint(1,60)
+    
+    # plotter.update_plots(i,a,b,c)
+    
+plotter.show()

@@ -13,6 +13,8 @@
     "individual_mutation_probability": 0.2,
     "implementation": "",
     "end_condition": "",
+    "A": "0.5",
+    "B": "0.5",
     "population_amount": 100,
     "individuals_amount": 150,
     "generations": 5
