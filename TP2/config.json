@@ -3,7 +3,7 @@
     "methods": {
         "crossover": "",
         "mutation": "complete",
-        "selection_a": "elite",
+        "selection_a": "roulette",
         "selection_b": "elite",
         "selection_prob": 0.7, 
         "replacement_a": "elite",

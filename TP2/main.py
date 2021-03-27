@@ -31,7 +31,7 @@ from methods.selections import elite, roulette
 # Crossover
 from methods.crossovers import onePointCross, twoPointsCross, annularCross, uniformCross
 # Mutation
-from data_handler import mutation
+from data_handler import mutation, selection
 from methods.mutations import MutationLib
 # Impl
 from methods.implementations.fill_all import fill_all
@@ -76,7 +76,8 @@ for i in range(10):
     # Parents Selection 
     print("-------------------- SELECTION ----------------------")
     #parents = elite(characters, individuals_amount, population_amount)
-    parents = roulette(characters, individuals_amount)
+    parents = selection(selection_method_a, characters, individuals_amount,population_amount)
+    print(parents)
     
     # Pair parent for crossover 
     parents1 = parents[0::2]
