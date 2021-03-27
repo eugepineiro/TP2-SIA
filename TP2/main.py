@@ -75,12 +75,12 @@ for i in range(10):
 
     # Parents Selection 
     print("-------------------- SELECTION ----------------------")
-    parents = elite(characters, individuals_amount, population_amount)
-    parents1 = parents[0::2]
-    parents2 = parents[1::2]
-
+    #parents = elite(characters, individuals_amount, population_amount)
+    parents = roulette(characters, individuals_amount)
+    
     # Pair parent for crossover 
-
+    parents1 = parents[0::2]
+    parents2 = parents[1::2] 
     # Crossover --> get children  
     print("-------------------- CROSSOVER ----------------------")
 
@@ -96,6 +96,8 @@ for i in range(10):
     if individual_mutation_probability < MutationLib.getMutationProbability():
         individual = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
     print(individual)
+
+
     # Get new Generation
     print("-------------------- REPLACEMENT ----------------------")
     characters = fill_parent(characters,children,individuals_amount, population_amount,replacement_a,replacement_b,B)
