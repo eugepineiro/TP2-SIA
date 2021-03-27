@@ -34,12 +34,19 @@ from methods.mutations import MutationLib
 # Impl
 from methods.implementations.fill_all import fill_all
 from methods.implementations.fill_parent import fill_parent
-
+import math
 import plotter
 
-file_list = [('TP2/allitems/armas-short.tsv', Weapon), ('TP2/allitems/botas-short.tsv', Boots), ('TP2/allitems/cascos-short.tsv', Helmet), ('TP2/allitems/guantes-short.tsv', Gloves), ('TP2/allitems/pecheras-short.tsv', Armor)]
+# file_list = [('TP2/allitems/armas-short.tsv', Weapon), ('TP2/allitems/botas-short.tsv', Boots), ('TP2/allitems/cascos-short.tsv', Helmet), ('TP2/allitems/guantes-short.tsv', Gloves), ('TP2/allitems/pecheras-short.tsv', Armor)]
+file_list = [('TP2/allitems/armas.tsv', Weapon), ('TP2/allitems/botas.tsv', Boots), ('TP2/allitems/cascos.tsv', Helmet), ('TP2/allitems/guantes.tsv', Gloves), ('TP2/allitems/pecheras.tsv', Armor)]
 item_handler = ItemHandler(file_list) 
 data = None
+
+def avg_fitness(characters):
+    return sum(list(map(lambda character: character.fitness,characters))) / len(characters)
+
+def get_diversity(characters):
+    return sum(list(map(lambda character: character.fitness,characters))) / len(characters)
 
 with open('TP2/config.json', 'r') as json_file:
     data = json.load(json_file)
@@ -53,8 +60,8 @@ with open('TP2/config.json', 'r') as json_file:
     mutation_method = data["methods"]["mutation"]
     replacement_a = data["methods"]["replacement_a"]
     replacement_b = data["methods"]["replacement_b"]
-    A = float(data["A"]) 
-    B = float(data["B"])
+    selection_prob = data["methods"]["selection_prob"]
+    replacement_prob = data["methods"]["replacement_prob"]
 
 # Build Generation 0
 characters = []
@@ -69,13 +76,18 @@ for i in range(population_amount):
 
 # plotter.init_plot()
 
-for i in range(1):
-
+for i in range(50):
+    print("-------------------- GENERATION {i} ----------------------".format(i=i))
     # Parents Selection 
     print("-------------------- SELECTION ----------------------")
     #parents = elite(characters, individuals_amount, population_amount)
-    parents = selection(selection_method_a, characters, individuals_amount,population_amount,i)
-    # print(parents)
+    first_cut = math.ceil(individuals_amount*selection_prob)
+    second_cut = math.floor(individuals_amount*(1-selection_prob))
+    parents1 = selection(selection_method_a, characters, first_cut,population_amount,i)
+    parents2 = selection(selection_method_b, characters, second_cut,population_amount,i)
+    parents = parents1 + parents2
+    print(parents)
+    print(len(parents))
     
     # Pair parent for crossover 
     parents1 = parents[0::2]
@@ -83,26 +95,27 @@ for i in range(1):
     # Crossover --> get children  
     print("-------------------- CROSSOVER ----------------------")
 
-    children = twoPointsCross(parents1, parents2, CharacterClass[character_class.upper()])
+    children = uniformCross(parents1, parents2, CharacterClass[character_class.upper()])
     # print(children)
 
 
     # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
     print("-------------------- MUTATION ----------------------")
-    individual = parents[0]  # CHILDREN !
-    # print(individual)
-    print("---------------------------")
-    if individual_mutation_probability < MutationLib.getMutationProbability():
-        individual = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
-    # print(individual)
+
+    print(children)
+    for j,individual in enumerate(children):
+        if individual_mutation_probability > MutationLib.getMutationProbability():
+            children[j] = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
+    print(children)
 
 
     # Get new Generation
     print("-------------------- REPLACEMENT ----------------------")
-    characters = fill_parent(characters,children,individuals_amount, population_amount,replacement_a,replacement_b,B)
+    characters = fill_all(characters,children,individuals_amount, population_amount,replacement_a,replacement_b,replacement_prob)
     # print(characters)
-    
-    # plotter.update_plots(i,min(map(lambda character: character.fitness,characters)),0,0)
+    # print(len(characters))
+    plotter.update_plots(i,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters))
 
 
-# plotter.show()
+
+plotter.show()

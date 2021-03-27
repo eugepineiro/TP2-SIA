@@ -29,7 +29,6 @@ def completeMutation(individual, item_handler):
     for gen in genes: 
         gen_class = gen.__class__.__name__
         new_gen = MutationLib.getNewGen(gen_class, item_handler)
-        print(gen_class)
         if gen_class == HEIGHT_CLASS:
             height = new_gen
         else:

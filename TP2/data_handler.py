@@ -20,7 +20,7 @@ def selection(method, characters, individuals_amount, population_amount,generati
         return d_tournaments(characters, individuals_amount, population_amount, m_value)
     elif method == P_TOURNAMENTS_S: 
         return p_tournaments(characters,individuals_amount,population_amount)
-        return
+    
 
 
 def mutation(method, individual, item_handler, individual_mutation_probability):
