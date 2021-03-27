@@ -28,7 +28,7 @@ def roulette(characters, individuals_amount):
 def universal(characters, individuals_amount):
     return rouletteOrUniversal(UNIVERSAL_S, characters,individuals_amount)
 
-# Selects k (indidivuals_amount) individuals between q[i-1] < r[k] < q[i], r random [0,1)
+# Selects k (individuals_amount) individuals between q[i-1] < r[k] < q[i], r random [0,1)
 def rouletteOrUniversal(method,characters, individuals_amount): 
 
     fitness = [(0,None)] #array of tuples (acum_fitness, character)
@@ -65,11 +65,11 @@ def getTotalFitness(characters):
 
     return total
 
-def ranking(characters,individuals_amount,population_amount):
+def ranking(characters, individuals_amount, population_amount):
     characters.sort()
     aux_chars = []
     id_char_dict = {}
-
+    
     for i, character in enumerate(characters):
         id_char_dict[character.id] = character
         pseudo_fitness = (population_amount - i - 1) / population_amount
@@ -84,3 +84,56 @@ def ranking(characters,individuals_amount,population_amount):
     for id in ids:
         selected_chars.append(id_char_dict.get(id))
     return selected_chars
+
+T0 = 100
+Tc = 50
+TEMP_CONST = 2
+def boltzmann(characters, individuals_amount, population_amount, generation):
+    
+    aux_chars = []
+    id_char_dict = {}
+    temp = Tc + (T0 - Tc) * math.exp(-TEMP_CONST * generation)
+    pop_avg = calculatePopAvg(characters,temp)
+
+    for i, character in enumerate(characters):
+        id_char_dict[character.id] = character
+        pseudo_fitness = math.exp(character.fitness/temp)/pop_avg
+        aux_char = Character(character.id, character.height, character.equipment,character.character_class)
+        aux_char.fitness = pseudo_fitness
+        aux_chars.append(aux_char)
+    
+    aux_chars = roulette(aux_chars,individuals_amount)
+
+    ids = list(map(lambda char: char.id, aux_chars))
+    selected_chars = []
+    for id in ids:
+        selected_chars.append(id_char_dict.get(id))
+    return selected_chars
+
+def calculatePopAvg(characters,temp):
+    return sum(list(map(lambda char: math.exp(char.fitness/temp),characters)))/len(characters)
+
+
+def d_tournaments(characters, individuals_amount, population_amount, m_value):
+    selected_characters = []
+    for i in range(individuals_amount):
+        selected = characters[random.randint(0,population_amount-1)]
+        for j in range(m_value-1):
+            char = characters[random.randint(0,population_amount-1)]
+            if char.fitness > selected.fitness:
+                selected = char
+        selected_characters.append(selected)
+    return selected_characters
+
+def p_tournaments(characters, individuals_amount, population_amount):
+    selected_characters = []
+    for i in range(individuals_amount):
+        #TODO: CHEQUEAR
+        threshold = random.uniform(0.5,1)
+        chars = sorted([characters[random.randint(0,population_amount-1)],characters[random.randint(0,population_amount-1)]],key=lambda char: char.fitness, reverse=True)
+        r = random.uniform(0,1)
+        if r < threshold:
+            selected_characters.append(chars[0])
+        else:
+            selected_characters.append(chars[1])
+    return selected_characters

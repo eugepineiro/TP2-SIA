@@ -1,8 +1,8 @@
 from constants import *
 from methods.mutations import oneGenMutation, completeMutation, limitedMultigenMutation, uniformMultigenMutation
-from methods.selections import elite, roulette, universal, ranking
+from methods.selections import elite, roulette, universal, ranking, boltzmann, d_tournaments, p_tournaments
 
-def selection(method, characters, individuals_amount, population_amount):
+def selection(method, characters, individuals_amount, population_amount,generation):
 
     if method == ELITE_S :
         return elite(characters, individuals_amount, population_amount)
@@ -13,10 +13,13 @@ def selection(method, characters, individuals_amount, population_amount):
     elif method == RANKING_S: 
         return ranking(characters,individuals_amount,population_amount)
     elif method == BOLTZMANN: 
-        return 
-    elif method == D_TOURNAMENTS_S: 
-        return 
+        return boltzmann(characters, individuals_amount, population_amount,generation)
+    elif method == D_TOURNAMENTS_S:
+        #TODO: CHANGE 
+        m_value = 10 
+        return d_tournaments(characters, individuals_amount, population_amount, m_value)
     elif method == P_TOURNAMENTS_S: 
+        return p_tournaments(characters,individuals_amount,population_amount)
         return
 
 

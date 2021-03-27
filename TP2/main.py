@@ -74,7 +74,7 @@ for i in range(1):
     # Parents Selection 
     print("-------------------- SELECTION ----------------------")
     #parents = elite(characters, individuals_amount, population_amount)
-    parents = selection(selection_method_a, characters, individuals_amount,population_amount)
+    parents = selection(selection_method_a, characters, individuals_amount,population_amount,i)
     # print(parents)
     
     # Pair parent for crossover 
