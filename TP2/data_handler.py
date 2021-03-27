@@ -1,15 +1,13 @@
 from constants import *
 from methods.mutations import oneGenMutation, completeMutation, limitedMultigenMutation, uniformMultigenMutation
-from methods.selections import elite, roulette
+from methods.selections import elite, rouletteOrUniversal
 
 def selection(method, characters, individuals_amount, population_amount):
 
     if method == ELITE_S :
         return elite(characters, individuals_amount, population_amount)
-    elif method == ROULETTE_S: 
-        return roulette(characters, individuals_amount)
-    elif method == UNIVERSAL_S:
-        return
+    elif method == ROULETTE_S or UNIVERSAL_S: 
+        return rouletteOrUniversal(method,characters, individuals_amount)
     elif method == RANKING_S: 
         return 
     elif method == BOLTZMANN: 

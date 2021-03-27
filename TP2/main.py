@@ -26,8 +26,6 @@ from Items.gloves import Gloves
 from Items.helmet import Helmet
 from Items.weapon import Weapon
 from constants import *
-# Selection
-from methods.selections import elite, roulette
 # Crossover
 from methods.crossovers import onePointCross, twoPointsCross, annularCross, uniformCross
 # Mutation
@@ -71,7 +69,7 @@ for i in range(population_amount):
 
 # plotter.init_plot()
 
-for i in range(10):
+for i in range(1):
 
     # Parents Selection 
     print("-------------------- SELECTION ----------------------")

@@ -1,5 +1,6 @@
 import math
 import random
+from constants import * 
 #Selects the k characters with better fitness, k = individuals_amount 
 
 def elite(characters, individuals_amount, population_amount):
@@ -21,7 +22,7 @@ def elite(characters, individuals_amount, population_amount):
     return new_characters
 
 # Selects k (indidivuals_amount) individuals between q[i-1] < r[k] < q[i], r random [0,1)
-def roulette(characters, individuals_amount): 
+def rouletteOrUniversal(method,characters, individuals_amount): 
 
     fitness = [] #array of tuples (acum_fitness, character)
     selected_characters = []
@@ -37,11 +38,16 @@ def roulette(characters, individuals_amount):
     r=0
     for i in range(individuals_amount): 
          
-        r = random.uniform(0,1)
+        rand = random.uniform(0,1)
+        if method == ROULETTE_S: 
+            r = rand
+        elif method == UNIVERSAL_S: 
+            r = (i + rand)/individuals_amount
+
 
         for j in range(len(fitness)-1):
-            accum1 = fitness[j][0]  # q[i-1]
-            accum2 = fitness[j+1][0]  # q[1]
+            accum1 = fitness[j][0]      # q[i-1]
+            accum2 = fitness[j+1][0]    # q[1]
 
             if accum1 < r and r <= accum2 :
                 selected_characters.append(fitness[j+1][1])
