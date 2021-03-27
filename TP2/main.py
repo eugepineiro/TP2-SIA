@@ -15,9 +15,7 @@
 # 4. SE HACE MUTACION DE ALGUNOS HIJOS DE LA NUEVA GENERACION
 # 5. CONDICION DE CORTE
 
-import json
-import csv
-import random
+import json, csv, random
 # Population
 from Characters.character import Character
 from Characters.character_class import CharacterClass
@@ -29,13 +27,12 @@ from Items.helmet import Helmet
 from Items.weapon import Weapon
 from constants import *
 # Selection
-from methods.selections.elite import elite
+from methods.selections import elite, roulette
 # Crossover
-from methods.crossovers.one_point_cross import onePointCross
-from methods.crossovers.two_points_cross import twoPointsCross
+from methods.crossovers import onePointCross, twoPointsCross, annularCross, uniformCross
 # Mutation
 from data_handler import mutation
-from methods.mutations.mutation_lib import MutationLib
+from methods.mutations import MutationLib
 # Impl
 from methods.implementations.fill_all import fill_all
 
@@ -61,8 +58,7 @@ for i in range(population_amount):
     equipment = item_handler.getEquipment()
     char = None
     height = random.uniform(MIN_HEIGHT, MAX_HEIGHT)
-    char = Character(i, height, equipment,
-                        CharacterClass[character_class.upper()])
+    char = Character(i, height, equipment, CharacterClass[character_class.upper()])
     characters.append(char)
     # print(char)
 
@@ -74,7 +70,7 @@ parents1 = parents[0::2]
 parents2 = parents[1::2]
 
 # Crossover --> get children
-children = twoPointsCross(parents1, parents2, CharacterClass[character_class.upper()])
+children = uniformCross(parents1, parents2, CharacterClass[character_class.upper()])
 
 # Mutate children
 

@@ -1,8 +1,5 @@
 from constants import *
-from methods.mutations.one_gen_mutation import oneGenMutation
-from methods.mutations.complete_mutation import completeMutation
-from methods.mutations.limited_multigen_mutation import limitedMultigenMutation
-from methods.mutations.uniform_multigen_mutation import uniformMultigenMutation
+from methods.mutations import oneGenMutation, completeMutation, limitedMultigenMutation, uniformMultigenMutation
 
 def mutation(method, individual, item_handler, individual_mutation_probability):
 
