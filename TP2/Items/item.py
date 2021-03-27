@@ -25,7 +25,7 @@ class Item(ABC):
     def getLife(self):
         return self.life
     
-    def __str__():
+    def __str__(self):
         return 'Item'
 
     def __repr__(self):

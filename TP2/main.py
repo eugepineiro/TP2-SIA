@@ -32,10 +32,10 @@ from methods.selections.elite import elite
 from methods.mutations.one_gen_mutation import oneGenMutation
 from methods.mutations.mutation_lib import MutationLib
 from methods.crossovers.one_point_cross import onePointCross
+from methods.crossovers.two_points_cross import twoPointsCross
 from methods.implementations.fill_all import fill_all
 
-file_list = [('TP2/allitems/armas-short.tsv', Weapon), ('TP2/allitems/botas-short.tsv', Boots), ('TP2/allitems/cascos-short.tsv',
-                                                                                                 Helmet), ('TP2/allitems/guantes-short.tsv', Gloves), ('TP2/allitems/pecheras-short.tsv', Armor)]
+file_list = [('TP2/allitems/armas-short.tsv', Weapon), ('TP2/allitems/botas-short.tsv', Boots), ('TP2/allitems/cascos-short.tsv', Helmet), ('TP2/allitems/guantes-short.tsv', Gloves), ('TP2/allitems/pecheras-short.tsv', Armor)]
 item_handler = ItemHandler(file_list)
 data = None
 
@@ -67,11 +67,11 @@ parents2 = parents[1::2]
 # Pair parent for crossover
 
 # Crossover --> get children
-# children = onePointCross(parents, CharacterClass[character_class.upper()])
+children = twoPointsCross(parents1, parents2, CharacterClass[character_class.upper()])
 
 # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
 
-individual = parents[0]  # CHILDREN !
+individual = children[0]  # CHILDREN !
 print(individual)
 print("---------------------------")
 if individual_mutation_probability < MutationLib.getMutationProbability():

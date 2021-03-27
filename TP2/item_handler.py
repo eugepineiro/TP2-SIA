@@ -10,7 +10,8 @@ class ItemHandler:
         for file_tuple in file_list:
             try:
                 df = pd.read_csv(file_tuple[0],delimiter = "\t",skiprows = 1, names=["id","Fu","Ag","Ex","Re","Vi"], index_col="id")
-                self.file_map[file_tuple[1].__str__()] = (df, file_tuple[1])
+                # aux = file_tuple[1](0,0,0,0,0,0)
+                self.file_map[file_tuple[1].__str__(None)] = (df, file_tuple[1])
             except:
                 print("cannot open %s" % file_tuple[0])
                 continue
