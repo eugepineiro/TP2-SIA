@@ -31,9 +31,8 @@ from methods.crossovers import onePointCross, twoPointsCross, annularCross, unif
 # Mutation
 from data_handler import mutation, selection
 from methods.mutations import MutationLib
+from methods.implementations import replacement
 # Impl
-from methods.implementations.fill_all import fill_all
-from methods.implementations.fill_parent import fill_parent
 import math
 import plotter
 
@@ -41,6 +40,7 @@ import plotter
 file_list = [('TP2/allitems/armas.tsv', Weapon), ('TP2/allitems/botas.tsv', Boots), ('TP2/allitems/cascos.tsv', Helmet), ('TP2/allitems/guantes.tsv', Gloves), ('TP2/allitems/pecheras.tsv', Armor)]
 item_handler = ItemHandler(file_list) 
 data = None
+ERROR = 0.001
 
 def avg_fitness(characters):
     return sum(list(map(lambda character: character.fitness,characters))) / len(characters)
@@ -62,10 +62,10 @@ with open('TP2/config.json', 'r') as json_file:
     replacement_b = data["methods"]["replacement_b"]
     selection_prob = data["methods"]["selection_prob"]
     replacement_prob = data["methods"]["replacement_prob"]
+    implementation = data["implementation"]
 
 # Build Generation 0
 characters = []
-
 for i in range(population_amount):
     equipment = item_handler.getEquipment()
     char = None
@@ -74,7 +74,7 @@ for i in range(population_amount):
     characters.append(char)
     # print(char)
 
-# plotter.init_plot()
+plotter.update_plots(0,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters))
 
 for i in range(50):
     print("-------------------- GENERATION {i} ----------------------".format(i=i))
@@ -83,8 +83,8 @@ for i in range(50):
     #parents = elite(characters, individuals_amount, population_amount)
     first_cut = math.ceil(individuals_amount*selection_prob)
     second_cut = math.floor(individuals_amount*(1-selection_prob))
-    parents1 = selection(selection_method_a, characters, first_cut,population_amount,i)
-    parents2 = selection(selection_method_b, characters, second_cut,population_amount,i)
+    parents1 = selection(selection_method_a, characters, first_cut,population_amount,generation=i+1)
+    parents2 = selection(selection_method_b, characters, second_cut,population_amount,generation=i+1)
     parents = parents1 + parents2
     print(parents)
     print(len(parents))
@@ -102,19 +102,19 @@ for i in range(50):
     # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
     print("-------------------- MUTATION ----------------------")
 
-    print(children)
+    # print(children)
     for j,individual in enumerate(children):
         if individual_mutation_probability > MutationLib.getMutationProbability():
             children[j] = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
-    print(children)
+    # print(children)
 
 
     # Get new Generation
     print("-------------------- REPLACEMENT ----------------------")
-    characters = fill_all(characters,children,individuals_amount, population_amount,replacement_a,replacement_b,replacement_prob)
+    characters = replacement(implementation,characters,children,individuals_amount, population_amount,replacement_a,replacement_b,replacement_prob,generation=i+1)
     # print(characters)
-    # print(len(characters))
-    plotter.update_plots(i,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters))
+    print(len(characters))
+    plotter.update_plots(i+1,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters))
 
 
 

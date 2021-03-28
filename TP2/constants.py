@@ -19,6 +19,10 @@ LIMITED_MULTIGEN_M = 'limited_multigen'
 UNIFORM_MULTIGEN_M = 'uniform_multigen'
 ONE_GEN_M = 'one_gen'
 
+# ----- MUTATION ------
+FILL_ALL_I = 'fill_all'
+FILL_PARENT_I = 'fill_parent'
+
 # ---------------------
 
 BOOTS_CLASS = 'Boots'

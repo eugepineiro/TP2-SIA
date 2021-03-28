@@ -33,6 +33,3 @@ def mutation(method, individual, item_handler, individual_mutation_probability):
         return limitedMultigenMutation(individual, item_handler)
     elif method == UNIFORM_MULTIGEN_M: 
         return uniformMultigenMutation(individual, item_handler, individual_mutation_probability)
-
-
-
