@@ -87,7 +87,8 @@ for i in range(population_amount):
     char = Character(i, height, equipment, CharacterClass[character_class.upper()])
     characters.append(char)
     # print(char)
-plotter.update_plots(0,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters))
+plotter.init_plot(character_class)
+plotter.update_plots(0,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters),max(map(lambda character: character.fitness,characters)))
 
 for i in range(50):
     print("-------------------- GENERATION {i} ----------------------".format(i=i))
@@ -98,6 +99,8 @@ for i in range(50):
     second_cut = math.floor(individuals_amount*(1-selection_prob))
     parents1 = selection(selection_method_a, characters, first_cut,population_amount,generation=i+1)
     parents2 = selection(selection_method_b, characters, second_cut,population_amount,generation=i+1)
+    # print(parents1)
+    # print(parents2)
     parents = parents1 + parents2
     # print(parents)
     # print(len(parents))
@@ -127,8 +130,15 @@ for i in range(50):
     characters = replacement(implementation,characters,children,individuals_amount, population_amount,replacement_a,replacement_b,replacement_prob,generation=i+1)
     # print(characters)
     # print(len(characters))
-    plotter.update_plots(i+1,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters))
-
+    plotter.update_plots(i+1,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters),max(map(lambda character: character.fitness,characters)))
+print(characters)
+best = characters[0]
+for character in characters[1:]:
+    if character.fitness > best.fitness:
+        best = character
+print(best)
+for item in best.equipment.items():
+    print(item)
 plotter.show()
 
 # runSimulation(data, item_handler, characters)
