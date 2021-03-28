@@ -77,6 +77,7 @@ with open('TP2/config.json', 'r') as json_file:
     replacement_prob = data["methods"]["replacement_prob"]
     implementation = data["implementation"]
     crossover_func = data["methods"]["crossover"]
+    generations = data["generations"]
 
 # Build Generation 0
 characters = []
@@ -90,7 +91,7 @@ for i in range(population_amount):
 plotter.init_plot(character_class)
 plotter.update_plots(0,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters),max(map(lambda character: character.fitness,characters)))
 
-for i in range(50):
+for i in range(generations):
     print("-------------------- GENERATION {i} ----------------------".format(i=i))
     # Parents Selection 
     print("-------------------- SELECTION ----------------------")

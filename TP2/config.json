@@ -4,9 +4,9 @@
         "crossover": "uniform",
         "mutation": "uniform_multigen",
         "selection_a": "roulette",
-        "selection_b": "elite",
+        "selection_b": "boltzmann",
         "selection_prob": 0.7, 
-        "replacement_a": "elite",
+        "replacement_a": "roulette",
         "replacement_b": "elite",
         "replacement_prob": 0.7
     },
@@ -19,5 +19,5 @@
     "end_condition": "",
     "population_amount": 100,
     "individuals_amount": 150,
-    "generations": 5
+    "generations": 50
 }
