@@ -15,10 +15,11 @@
 # 4. SE HACE MUTACION DE ALGUNOS HIJOS DE LA NUEVA GENERACION
 # 5. CONDICION DE CORTE
 
-import json, csv, random
+import json, random
 # Population
 from Characters.character import Character
 from Characters.character_class import CharacterClass
+from simulation import runSimulation
 from item_handler import ItemHandler
 from Items.armor import Armor
 from Items.boots import Boots
@@ -26,15 +27,11 @@ from Items.gloves import Gloves
 from Items.helmet import Helmet
 from Items.weapon import Weapon
 from constants import *
-# Crossover
-from methods.crossovers import onePointCross, twoPointsCross, annularCross, uniformCross
-# Mutation
-from data_handler import mutation, selection
+import plotter, math
+from data_handler import mutation, selection, crossover
 from methods.mutations import MutationLib
 from methods.implementations import replacement
 # Impl
-import math
-import plotter
 
 # file_list = [('TP2/allitems/armas-short.tsv', Weapon), ('TP2/allitems/botas-short.tsv', Boots), ('TP2/allitems/cascos-short.tsv', Helmet), ('TP2/allitems/guantes-short.tsv', Gloves), ('TP2/allitems/pecheras-short.tsv', Armor)]
 file_list = [('TP2/allitems/armas.tsv', Weapon), ('TP2/allitems/botas.tsv', Boots), ('TP2/allitems/cascos.tsv', Helmet), ('TP2/allitems/guantes.tsv', Gloves), ('TP2/allitems/pecheras.tsv', Armor)]
@@ -67,9 +64,8 @@ def get_diversity(characters):
 
 with open('TP2/config.json', 'r') as json_file:
     data = json.load(json_file)
-
-    character_class = data['class']
     population_amount = data['population_amount']
+    character_class = data['class']
     individuals_amount = data['individuals_amount']
     individual_mutation_probability = data['individual_mutation_probability']
     selection_method_a = data["methods"]["selection_a"]
@@ -80,6 +76,7 @@ with open('TP2/config.json', 'r') as json_file:
     selection_prob = data["methods"]["selection_prob"]
     replacement_prob = data["methods"]["replacement_prob"]
     implementation = data["implementation"]
+    crossover_func = data["methods"]["crossover"]
 
 # Build Generation 0
 characters = []
@@ -110,8 +107,8 @@ for i in range(50):
     parents2 = parents[1::2] 
     # Crossover --> get children  
     print("-------------------- CROSSOVER ----------------------")
+    children = crossover(crossover_func, parents1, parents2, CharacterClass[character_class.upper()])
 
-    children = uniformCross(parents1, parents2, CharacterClass[character_class.upper()])
     # print(children)
 
 
@@ -132,6 +129,6 @@ for i in range(50):
     # print(len(characters))
     plotter.update_plots(i+1,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters))
 
-
-
 plotter.show()
+
+# runSimulation(data, item_handler, characters)

@@ -19,6 +19,11 @@ LIMITED_MULTIGEN_M = 'limited_multigen'
 UNIFORM_MULTIGEN_M = 'uniform_multigen'
 ONE_GEN_M = 'one_gen'
 
+# ----- CUTTING ------
+TIME_CUT = 'time'
+GENERATION_CUT = 'generation'
+CONTENT_CUT = 'content'
+
 # ----- MUTATION ------
 FILL_ALL_I = 'fill_all'
 FILL_PARENT_I = 'fill_parent'

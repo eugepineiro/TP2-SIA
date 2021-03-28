@@ -1,8 +1,9 @@
 from constants import *
 from methods.mutations import oneGenMutation, completeMutation, limitedMultigenMutation, uniformMultigenMutation
 from methods.selections import elite, roulette, universal, ranking, boltzmann, d_tournaments, p_tournaments
+from methods.crossovers import onePointCross, twoPointsCross, annularCross, uniformCross
 
-def selection(method, characters, individuals_amount, population_amount,generation):
+def selection(method, characters, individuals_amount, population_amount, generation):
 
     if method == ELITE_S :
         return elite(characters, individuals_amount, population_amount)
@@ -33,3 +34,13 @@ def mutation(method, individual, item_handler, individual_mutation_probability):
         return limitedMultigenMutation(individual, item_handler)
     elif method == UNIFORM_MULTIGEN_M: 
         return uniformMultigenMutation(individual, item_handler, individual_mutation_probability)
+
+def crossover(method, parents1, parents2, character_class):
+    if method == ONE_POINT_C:
+        return onePointCross(parents1, parents2, character_class)
+    elif method == TWO_POINTS_C:
+        return twoPointsCross(parents1, parents2, character_class)
+    elif method == ANNULAR_C:
+        return annularCross(parents1, parents2, character_class)
+    elif method == UNIFORM_C:
+        return uniformCross(parents1, parents2, character_class)
