@@ -1,14 +1,18 @@
 {
     "class": "warrior",
     "methods": {
-        "crossover": "",
-        "mutation": "complete",
+        "crossover": "uniform",
+        "mutation": "uniform_multigen",
         "selection_a": "roulette",
         "selection_b": "elite",
         "selection_prob": 0.7, 
         "replacement_a": "elite",
         "replacement_b": "elite",
         "replacement_prob": 0.7
+    },
+    "cutting_condition": {
+        "method": "content",
+        "parameter": 8
     },
     "individual_mutation_probability": 0.2,
     "implementation": "",
