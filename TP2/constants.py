@@ -24,6 +24,10 @@ TIME_CUT = 'time'
 GENERATION_CUT = 'generation'
 CONTENT_CUT = 'content'
 
+# ----- MUTATION ------
+FILL_ALL_I = 'fill_all'
+FILL_PARENT_I = 'fill_parent'
+
 # ---------------------
 
 BOOTS_CLASS = 'Boots'

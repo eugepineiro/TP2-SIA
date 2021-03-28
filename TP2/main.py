@@ -33,6 +33,7 @@ from constants import *
 file_list = [('TP2/allitems/armas.tsv', Weapon), ('TP2/allitems/botas.tsv', Boots), ('TP2/allitems/cascos.tsv', Helmet), ('TP2/allitems/guantes.tsv', Gloves), ('TP2/allitems/pecheras.tsv', Armor)]
 item_handler = ItemHandler(file_list) 
 data = None
+ERROR = 0.001
 
 with open('TP2/config.json', 'r') as json_file:
     data = json.load(json_file)
@@ -41,7 +42,6 @@ with open('TP2/config.json', 'r') as json_file:
 
 # Build Generation 0
 characters = []
-
 for i in range(population_amount):
     equipment = item_handler.getEquipment()
     char = None
