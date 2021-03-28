@@ -98,7 +98,6 @@ def uniformMultigenMutation(individual, item_handler, individual_mutation_probab
         if individual_mutation_probability < random.uniform(0,1): 
             gen_class = gen.__class__.__name__
             new_gen = MutationLib.getNewGen(gen_class, item_handler)
-            print(gen_class)
             if gen_class == HEIGHT_CLASS:
                 height = new_gen
             else:

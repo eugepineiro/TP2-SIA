@@ -1,5 +1,5 @@
 # crear un personaje --> conseguir el array de items que le tiene que pasar --> abre los tsv y elige uno de cada PONELE QUE DE FORMA RANDOM
-# el mejor personaje --> genes: h, equipent
+# el mejor personaje --> genes: h, equipment
 # poblacion: n personajes --> QUIERO EL FITNESS --> elegir algun alg genetico y aplicar crossover y mutation
 # --------
 # GEN1: Height
@@ -45,8 +45,25 @@ ERROR = 0.001
 def avg_fitness(characters):
     return sum(list(map(lambda character: character.fitness,characters))) / len(characters)
 
+def compare_height(h1,h2):
+    return abs(h1-h2) < ERROR
+
+def compare_equipment(e1,e2):
+    items = list(map(lambda elem: elem[1].__str__(None) ,file_list))
+    for item_type in items:
+        if not e1[item_type] == e2[item_type]:
+            return False
+    return True
+
 def get_diversity(characters):
-    return sum(list(map(lambda character: character.fitness,characters))) / len(characters)
+    diff = 0
+    # Iterate through all but last characters
+    for i,char1 in enumerate(characters[:-1]):
+        # Iterate throught all characters with higher index than char1
+        for char2 in characters[i+1:]:
+            if not compare_height(char1.height,char2.height) or not compare_equipment(char1.equipment,char2.equipment):
+                diff += 1
+    return diff
 
 with open('TP2/config.json', 'r') as json_file:
     data = json.load(json_file)
@@ -73,7 +90,6 @@ for i in range(population_amount):
     char = Character(i, height, equipment, CharacterClass[character_class.upper()])
     characters.append(char)
     # print(char)
-
 plotter.update_plots(0,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters))
 
 for i in range(50):
@@ -86,8 +102,8 @@ for i in range(50):
     parents1 = selection(selection_method_a, characters, first_cut,population_amount,generation=i+1)
     parents2 = selection(selection_method_b, characters, second_cut,population_amount,generation=i+1)
     parents = parents1 + parents2
-    print(parents)
-    print(len(parents))
+    # print(parents)
+    # print(len(parents))
     
     # Pair parent for crossover 
     parents1 = parents[0::2]
@@ -113,7 +129,7 @@ for i in range(50):
     print("-------------------- REPLACEMENT ----------------------")
     characters = replacement(implementation,characters,children,individuals_amount, population_amount,replacement_a,replacement_b,replacement_prob,generation=i+1)
     # print(characters)
-    print(len(characters))
+    # print(len(characters))
     plotter.update_plots(i+1,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters))
 
 
