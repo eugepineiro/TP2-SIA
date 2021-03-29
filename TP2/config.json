@@ -1,23 +1,23 @@
 {
-    "class": "warrior",
+    "class": "spy",
     "methods": {
         "crossover": "uniform",
         "mutation": "uniform_multigen",
-        "selection_a": "roulette",
+        "selection_a": "ranking",
         "selection_b": "elite",
-        "selection_prob": 0.7, 
-        "replacement_a": "elite",
-        "replacement_b": "elite",
-        "replacement_prob": 0.7
+        "selection_prob": 0, 
+        "replacement_a": "ranking",
+        "replacement_b": "d_tournaments",
+        "replacement_prob": 0
     },
     "cutting_condition": {
-        "method": "content",
-        "parameter": 8
+        "method": "structure",
+        "parameter": 20
     },
-    "individual_mutation_probability": 0.2,
+    "individual_mutation_probability": 0.5,
     "implementation": "fill_all",
     "end_condition": "",
-    "population_amount": 100,
-    "individuals_amount": 150,
+    "population_amount": 200,
+    "individuals_amount": 300,
     "generations": 5
 }

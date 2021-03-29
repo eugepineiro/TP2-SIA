@@ -5,12 +5,31 @@ from methods.implementations import fill_all
 from constants import *
 import math, plotter
 import time
+from methods.implementations import replacement
+ERROR = 0.001
+equipment_types = ["Weapon", "Boots", "Helmet", "Gloves", "Armor"]
 
 def avg_fitness(characters):
     return sum(list(map(lambda character: character.fitness,characters))) / len(characters)
 
+def compare_height(h1,h2):
+    return abs(h1-h2) < ERROR
+
+def compare_equipment(e1,e2):
+    for item in equipment_types:
+        if not e1[item] == e2[item]:
+            return False
+    return True
+
 def get_diversity(characters):
-    return sum(list(map(lambda character: character.fitness,characters))) / len(characters)
+    diff = 0
+    # Iterate through all but last characters
+    for i,char1 in enumerate(characters[:-1]):
+        # Iterate throught all characters with higher index than char1
+        for char2 in characters[i+1:]:
+            if not compare_height(char1.height,char2.height) or not compare_equipment(char1.equipment,char2.equipment):
+                diff += 1
+    return diff
 
 def max_fitness(characters):
     return max(list(map(lambda character: character.fitness, characters)))
@@ -45,14 +64,37 @@ def contentCut(max_generation, data, item_handler, characters, plotter, iteratio
 
         generation += 1
 
+def structureCut(max_diversity, data, item_handler, characters, plotter, iteration_func):
+    MAX_GENERATIONS = 20
+    generation = 0
+    gen_counter = 0
+
+    while gen_counter < MAX_GENERATIONS:
+        characters = iteration_func(data, item_handler, characters, plotter, generation)
+
+        diversity = get_diversity(characters)
+
+        if diversity >= max_diversity:
+            gen_counter = 0
+        else:
+            gen_counter += 1
+
+        generation += 1
+
+
+
 def cutting(method, parameter, data, item_handler, characters, iteration_func):
     graph = plotter
+    graph.update_plots(0,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters),max(map(lambda character: character.fitness,characters)))
+
     if method == GENERATION_CUT:
         generationCut(parameter, data, item_handler, characters, graph, iteration_func)
     elif method == TIME_CUT:
         timeCut(parameter, data, item_handler, characters, graph, iteration_func)
     elif method == CONTENT_CUT:
         contentCut(parameter, data, item_handler, characters, graph, iteration_func)
+    elif method == STRUCTURE_CUT:
+        structureCut(parameter, data, item_handler, characters, graph, iteration_func)
     else:
         return
 
@@ -60,26 +102,28 @@ def cutting(method, parameter, data, item_handler, characters, iteration_func):
 
 def runIteration(data, item_handler, characters, plotter, generation):
 
-    character_class = data['class']
     population_amount = data['population_amount']
+    character_class = data['class']
     individuals_amount = data['individuals_amount']
     individual_mutation_probability = data['individual_mutation_probability']
     selection_method_a = data["methods"]["selection_a"]
     selection_method_b = data["methods"]["selection_b"]
-    crossover_method = data["methods"]["crossover"]
     mutation_method = data["methods"]["mutation"]
     replacement_a = data["methods"]["replacement_a"]
     replacement_b = data["methods"]["replacement_b"]
     selection_prob = data["methods"]["selection_prob"]
     replacement_prob = data["methods"]["replacement_prob"]
+    implementation = data["implementation"]
+    crossover_func = data["methods"]["crossover"]
+    generations = data["generations"]
 
     # Parents Selection 
     print("-------------------- SELECTION ----------------------")
     #parents = elite(characters, individuals_amount, population_amount)
     first_cut = math.ceil(individuals_amount*selection_prob)
     second_cut = math.floor(individuals_amount*(1-selection_prob))
-    parents1 = selection(selection_method_a, characters, first_cut,population_amount, generation)
-    parents2 = selection(selection_method_b, characters, second_cut,population_amount, generation)
+    parents1 = selection(selection_method_a, characters, first_cut,population_amount, generation+1)
+    parents2 = selection(selection_method_b, characters, second_cut,population_amount, generation+1)
     parents = parents1 + parents2
     print(parents)
     print(len(parents))
@@ -90,7 +134,7 @@ def runIteration(data, item_handler, characters, plotter, generation):
     # Crossover --> get children  
     print("-------------------- CROSSOVER ----------------------")
 
-    children = crossover(crossover_method, parents1, parents2, CharacterClass[character_class.upper()])
+    children = crossover(crossover_func, parents1, parents2, CharacterClass[character_class.upper()])
     # print(children)
 
 
@@ -106,10 +150,10 @@ def runIteration(data, item_handler, characters, plotter, generation):
 
     # Get new Generation
     print("-------------------- REPLACEMENT ----------------------")
-    characters = fill_all(characters,children,individuals_amount, population_amount,replacement_a,replacement_b,replacement_prob)
+    characters = replacement(implementation,characters,children,individuals_amount, population_amount,replacement_a,replacement_b,replacement_prob,generation=generation+1)
     # print(characters)
     # print(len(characters))
-    plotter.update_plots(generation, min(map(lambda character: character.fitness,characters)), avg_fitness(characters), get_diversity(characters))
+    plotter.update_plots(generation + 1,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters),max(map(lambda character: character.fitness,characters)))
 
     return characters
 

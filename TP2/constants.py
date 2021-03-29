@@ -23,6 +23,7 @@ ONE_GEN_M = 'one_gen'
 TIME_CUT = 'time'
 GENERATION_CUT = 'generation'
 CONTENT_CUT = 'content'
+STRUCTURE_CUT = 'structure'
 
 # ----- MUTATION ------
 FILL_ALL_I = 'fill_all'

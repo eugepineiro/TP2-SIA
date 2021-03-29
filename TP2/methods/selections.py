@@ -85,8 +85,8 @@ def ranking(characters, individuals_amount, population_amount):
         selected_chars.append(id_char_dict.get(id))
     return selected_chars
 
-T0 = 200
-Tc = 50
+T0 = 50
+Tc = 10
 TEMP_CONST = 2
 def boltzmann(characters, individuals_amount, population_amount, generation):
     
