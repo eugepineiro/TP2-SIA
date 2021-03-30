@@ -35,7 +35,7 @@ class Character:
     def getDEM(self):
         return 1.9 + pow(2.5*self.height-4.16, 4) - pow(2.5*self.height-4.16, 2) - 3*self.height/10.0 
     
-    def getStat(self, multiplier, stats):     
+    def getStat(self, multiplier, stats):
         return multiplier * math.tanh(0.01*sum(stats))
           
     def calculateAttack(self):

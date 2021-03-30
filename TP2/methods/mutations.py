@@ -95,7 +95,7 @@ def uniformMultigenMutation(individual, item_handler, individual_mutation_probab
     genes = [individual.height] + individual.getEquipment()
  
     for gen in genes:
-        if individual_mutation_probability < random.uniform(0,1): 
+        if individual_mutation_probability >= random.uniform(0,1): 
             gen_class = gen.__class__.__name__
             new_gen = MutationLib.getNewGen(gen_class, item_handler)
             if gen_class == HEIGHT_CLASS:
@@ -106,3 +106,7 @@ def uniformMultigenMutation(individual, item_handler, individual_mutation_probab
     mutated_individual = Character(individual.id, height, equipment_dict, individual.character_class)
 
     return mutated_individual
+
+# Este individuo lo muto o no ? --> main 
+
+# Este gen muta o no ? --> SOLO en uniform para elegir que gen mutar

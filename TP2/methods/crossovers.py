@@ -60,12 +60,6 @@ def annularCross(parents1, parents2, char_class):
         k = 0
         while k < length:
             desc_genes1[idx % genes_cant] = genes2[idx % genes_cant]
-            idx += 1
-            k += 1
-
-        idx = locus
-        k = 0
-        while k < length:
             desc_genes2[idx % genes_cant] = genes1[idx % genes_cant]
             idx += 1
             k += 1

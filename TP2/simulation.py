@@ -6,7 +6,7 @@ from constants import *
 import math, plotter
 import time
 from methods.implementations import replacement
-ERROR = 0.001
+ERROR = 0.01
 equipment_types = ["Weapon", "Boots", "Helmet", "Gloves", "Armor"]
 
 def avg_fitness(characters):
@@ -17,7 +17,9 @@ def compare_height(h1,h2):
 
 def compare_equipment(e1,e2):
     for item in equipment_types:
-        if not e1[item] == e2[item]:
+        i1 = e1[item]
+        i2 = e2[item]
+        if not abs(i1.force - i2.force) < ERROR or not abs(i1.agility - i2.agility) < ERROR or not abs(i1.expertise - i2.expertise) < ERROR or not abs(i1.resistance - i2.resistance) < ERROR or not abs(i1.life - i2.life) < ERROR: 
             return False
     return True
 
@@ -29,7 +31,16 @@ def get_diversity(characters):
         for char2 in characters[i+1:]:
             if not compare_height(char1.height,char2.height) or not compare_equipment(char1.equipment,char2.equipment):
                 diff += 1
-    return diff
+    size = len(characters)
+    return (diff / ((size-1)*size)/2) * 100
+
+#def get_diversity_by_stats(characters): #dos individuos son iguales si tienen la misma fuerza y la misma pericia y agilidad etc con un delta
+    
+    
+#def get_diversity_by_fitness(characters): #dos individuos son iguales si tienen el mismo fitness con un delta
+    
+    
+    
 
 def max_fitness(characters):
     return max(list(map(lambda character: character.fitness, characters)))
@@ -153,22 +164,22 @@ def runIteration(data, item_handler, characters, plotter, generation):
 
     # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
     print("-------------------- MUTATION ----------------------")
-    max_fitness = 0
+    min_fitness = 20
     for c in children :
-        if c.fitness > max_fitness :
-            max_fitness = c.fitness
-    print("MAX FITNESS BEFORE MUTATION: %d" %max_fitness)
+        if c.fitness < min_fitness :
+            min_fitness = c.fitness
+    print("MIN FITNESS BEFORE MUTATION: %d" %min_fitness)
         
     #print(children)
     for j,individual in enumerate(children):
         if individual_mutation_probability > MutationLib.getMutationProbability():
             children[j] = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
     #print(children)
-    max_fitness = 0
+    min_fitness = 20
     for c in children :
-        if c.fitness > max_fitness :
-            max_fitness = c.fitness
-    print("MAX FITNESS AFTER MUTATION: %d" %max_fitness)
+        if c.fitness < min_fitness :
+            min_fitness = c.fitness
+    print("MIN FITNESS AFTER MUTATION: %d" %min_fitness)
 
     # Get new Generation
     print("-------------------- REPLACEMENT ----------------------")
