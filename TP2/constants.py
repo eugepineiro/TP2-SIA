@@ -24,6 +24,7 @@ TIME_CUT = 'time'
 GENERATION_CUT = 'generation'
 CONTENT_CUT = 'content'
 STRUCTURE_CUT = 'structure'
+SOLUTION_CUT = 'solution'
 
 # ----- MUTATION ------
 FILL_ALL_I = 'fill_all'

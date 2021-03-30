@@ -81,6 +81,18 @@ def structureCut(max_diversity, data, item_handler, characters, plotter, iterati
 
         generation += 1
 
+def solutionCut(min_fitness, data, item_handler, characters, graph, iteration_func): 
+    
+    generation = 0
+
+    while True: 
+        characters = iteration_func(data, item_handler, characters, plotter, generation)
+        avg_fit = avg_fitness(characters)
+        if avg_fit >= min_fitness:
+            return
+
+        generation += 1
+    
 
 
 def cutting(method, parameter, data, item_handler, characters, iteration_func):
@@ -95,6 +107,8 @@ def cutting(method, parameter, data, item_handler, characters, iteration_func):
         contentCut(parameter, data, item_handler, characters, graph, iteration_func)
     elif method == STRUCTURE_CUT:
         structureCut(parameter, data, item_handler, characters, graph, iteration_func)
+    elif method == SOLUTION_CUT:
+        solutionCut(parameter, data, item_handler, characters, graph, iteration_func)
     else:
         return
 
@@ -114,8 +128,7 @@ def runIteration(data, item_handler, characters, plotter, generation):
     selection_prob = data["methods"]["selection_prob"]
     replacement_prob = data["methods"]["replacement_prob"]
     implementation = data["implementation"]
-    crossover_func = data["methods"]["crossover"]
-    generations = data["generations"]
+    crossover_func = data["methods"]["crossover"] 
 
     # Parents Selection 
     print("-------------------- SELECTION ----------------------")
@@ -140,13 +153,22 @@ def runIteration(data, item_handler, characters, plotter, generation):
 
     # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
     print("-------------------- MUTATION ----------------------")
-
-    print(children)
+    max_fitness = 0
+    for c in children :
+        if c.fitness > max_fitness :
+            max_fitness = c.fitness
+    print("MAX FITNESS BEFORE MUTATION: %d" %max_fitness)
+        
+    #print(children)
     for j,individual in enumerate(children):
         if individual_mutation_probability > MutationLib.getMutationProbability():
             children[j] = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
-    print(children)
-
+    #print(children)
+    max_fitness = 0
+    for c in children :
+        if c.fitness > max_fitness :
+            max_fitness = c.fitness
+    print("MAX FITNESS AFTER MUTATION: %d" %max_fitness)
 
     # Get new Generation
     print("-------------------- REPLACEMENT ----------------------")

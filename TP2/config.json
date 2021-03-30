@@ -11,13 +11,11 @@
         "replacement_prob": 0
     },
     "cutting_condition": {
-        "method": "structure",
-        "parameter": 20
+        "method": "solution",
+        "parameter": 25
     },
     "individual_mutation_probability": 0.5,
     "implementation": "fill_all",
-    "end_condition": "",
     "population_amount": 200,
-    "individuals_amount": 300,
-    "generations": 5
+    "individuals_amount": 300
 }
