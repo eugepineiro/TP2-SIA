@@ -41,7 +41,7 @@ def update_plots(generation, fit_min, fit_mean, gen_div,fit_max):
     ax3.scatter(x_vals, gen_div_vals, label="Genetic diversity value",color="darkorange")
     ax3.legend(loc="upper left",frameon=False)
     ax3.set_xlabel("Generation")
-    ax3.set_ylabel("Genetic diversity value")
+    ax3.set_ylabel("Genetic diversity value (%)")
 
     ax4.cla()
     ax4.scatter(x_vals, fit_max_vals, label="Fitness maximum value",color="seagreen")

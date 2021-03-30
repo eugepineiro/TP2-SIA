@@ -143,14 +143,13 @@ def runIteration(data, item_handler, characters, plotter, generation):
 
     # Parents Selection 
     print("-------------------- SELECTION ----------------------")
-    #parents = elite(characters, individuals_amount, population_amount)
-    first_cut = math.ceil(individuals_amount*selection_prob)
-    second_cut = math.floor(individuals_amount*(1-selection_prob))
+    first_cut = math.floor(individuals_amount*selection_prob)
+    second_cut = math.ceil(individuals_amount*(1-selection_prob))
     parents1 = selection(selection_method_a, characters, first_cut,population_amount, generation+1)
     parents2 = selection(selection_method_b, characters, second_cut,population_amount, generation+1)
     parents = parents1 + parents2
-    print(parents)
-    print(len(parents))
+    # print(parents)
+    # print(len(parents))
     
     # Pair parent for crossover 
     parents1 = parents[0::2]
@@ -165,10 +164,10 @@ def runIteration(data, item_handler, characters, plotter, generation):
     # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
     print("-------------------- MUTATION ----------------------")
     min_fitness = 20
-    for c in children :
-        if c.fitness < min_fitness :
-            min_fitness = c.fitness
-    print("MIN FITNESS BEFORE MUTATION: %d" %min_fitness)
+    # for c in children :
+        # if c.fitness < min_fitness :
+            # min_fitness = c.fitness
+    # print("MIN FITNESS BEFORE MUTATION: %d" %min_fitness)
         
     #print(children)
     for j,individual in enumerate(children):
@@ -176,16 +175,17 @@ def runIteration(data, item_handler, characters, plotter, generation):
             children[j] = mutation(mutation_method, individual, item_handler, individual_mutation_probability)
     #print(children)
     min_fitness = 20
-    for c in children :
-        if c.fitness < min_fitness :
-            min_fitness = c.fitness
-    print("MIN FITNESS AFTER MUTATION: %d" %min_fitness)
+    # for c in children :
+        # if c.fitness < min_fitness :
+            # min_fitness = c.fitness
+    # print("MIN FITNESS AFTER MUTATION: %d" %min_fitness)
 
     # Get new Generation
     print("-------------------- REPLACEMENT ----------------------")
+    print(len(characters))
+
     characters = replacement(implementation,characters,children,individuals_amount, population_amount,replacement_a,replacement_b,replacement_prob,generation=generation+1)
-    # print(characters)
-    # print(len(characters))
+    print(len(characters))
     plotter.update_plots(generation + 1,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters),max(map(lambda character: character.fitness,characters)))
 
     return characters

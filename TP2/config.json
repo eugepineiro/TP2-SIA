@@ -2,20 +2,20 @@
     "class": "warrior",
     "methods": {
         "crossover": "uniform",
-        "mutation": "uniform_multigen",
+        "mutation": "one_gen",
         "selection_a": "ranking",
-        "selection_b": "elite",
+        "selection_b": "d_tournaments",
         "selection_prob": 0.6, 
-        "replacement_a": "ranking",
+        "replacement_a": "p_tournaments",
         "replacement_b": "elite",
-        "replacement_prob": 0.5
+        "replacement_prob": 0.8
     },
     "cutting_condition": {
         "method": "generation",
         "parameter": 100
     },
-    "individual_mutation_probability": 0,
-    "implementation": "fill_all",
+    "individual_mutation_probability": 0.3,
+    "implementation": "fill_parent",
     "population_amount": 200,
     "individuals_amount": 300
 }
