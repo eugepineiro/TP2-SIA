@@ -24,6 +24,10 @@ def compare_equipment(e1,e2):
     return True
 
 def get_diversity(characters):
+    return get_diversity_by_genes(characters)
+
+
+def get_diversity_by_genes(characters): 
     diff = 0
     # Iterate through all but last characters
     for i,char1 in enumerate(characters[:-1]):
@@ -31,8 +35,20 @@ def get_diversity(characters):
         for char2 in characters[i+1:]:
             if not compare_height(char1.height,char2.height) or not compare_equipment(char1.equipment,char2.equipment):
                 diff += 1
+    size = len(characters) 
+    total = ((size-1)*size)/2.0
+    return (diff / int(total)) * 100
+
+def get_diversity_by_fitness(characters): 
+    diff = 0
+    for char1 in characters: 
+        for char2 in characters: 
+            if abs(char1.fitness - char2.fitness) >= ERROR : 
+                diff += 1
+    
     size = len(characters)
-    return (diff / ((size-1)*size)/2) * 100
+    return (diff / pow(size-1, size )) * 100
+                
 
 def max_fitness(characters):
     return max(list(map(lambda character: character.fitness, characters)))
@@ -137,7 +153,7 @@ def cutting(data_handler, item_handler, characters, iteration_func): # cutting_m
     graph.show()
 
 def runIteration(data_handler, item_handler, characters, plotter, generation):
-
+    aux_chars = characters.copy()
     # Parents Selection 
     first_cut = math.floor(data_handler.individuals_amount*data_handler.selection_prob)
     second_cut = math.ceil(data_handler.individuals_amount*(1-data_handler.selection_prob))
@@ -154,13 +170,17 @@ def runIteration(data_handler, item_handler, characters, plotter, generation):
    
     # Mutate children (para cada hijo chequeo --> si cumple con Pm --> lo muto, sino sigo)
     for j,individual in enumerate(children):
-        if data_handler.individual_mutation_probability > MutationLib.getMutationProbability():
-            children[j] = data_handler.mutation(individual, item_handler)
+        if data_handler.individual_mutation_probability > MutationLib.getMutationProbability(): 
+            children[j] = data_handler.mutation(individual, item_handler) 
  
     # Get new Generation
     characters = replacement(data_handler, characters, children, generation=generation+1)
     plotter.update_plots(generation + 1,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters),max(map(lambda character: character.fitness,characters)))
-
+   # print("DIVERSITY %d" %generation)
+    #if(get_diversity(aux_chars) < get_diversity(characters)): 
+     #   print(aux_chars)
+      #  print(characters)
+    
     return characters
 
 def runSimulation(data_handler, item_handler, characters):

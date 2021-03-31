@@ -121,7 +121,6 @@ def d_tournaments(characters, individuals_amount, population_amount, m_value):
                 selected = char
         selected_characters.append(selected)
     
-    print(selected_characters)
     return selected_characters
 
 def p_tournaments(characters, individuals_amount, population_amount, threshold):
