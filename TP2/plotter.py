@@ -9,7 +9,7 @@ gen_div_vals = []  # genetic diversity value
 fit_max_vals = []  # fitness maximum value
 
 fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2,figsize=(12,8)) #2 rows y 2 cols --> 4 graphs 
-
+fig.tight_layout(pad=5.0)
 
 def update_plots(generation, fit_min, fit_mean, gen_div,fit_max):
     x_vals.append(generation)
@@ -24,40 +24,36 @@ def update_plots(generation, fit_min, fit_mean, gen_div,fit_max):
 
     ax1.cla()
     ax1.scatter(x_vals, fit_min_vals, label="Fitness minimum value",color="cornflowerblue")
-    ax1.legend(loc="upper left",frameon=False)
+    #ax1.legend(loc="upper left",frameon=False)
     ax1.set_xlabel("Generation")
-    ax1.set_ylabel("Fitness minimum value")
+    ax1.set_ylabel("Fitness minimum value") 
+    ax1.title.set_text("MIN FITNESS")
 
     ax2.cla()
     ax2.scatter(x_vals, fit_mean_vals, label="Fitness mean value",color="indianred")
-    ax2.legend(loc="upper left",frameon=False)
+    #ax2.legend(loc="upper left",frameon=False)
     ax2.set_xlabel("Generation")
     ax2.set_ylabel("Fitness mean value")
-
+    ax2.title.set_text("MEAN FITNESS")
+    
     ax3.cla()
     ax3.scatter(x_vals, gen_div_vals, label="Genetic diversity value",color="darkorange")
-    ax3.legend(loc="upper left",frameon=False)
+    #ax3.legend(loc="upper left",frameon=False)
     ax3.set_xlabel("Generation")
     ax3.set_ylabel("Genetic diversity value (%)")
+    ax3.title.set_text("DIVERSITY")
 
     ax4.cla()
     ax4.scatter(x_vals, fit_max_vals, label="Fitness maximum value",color="seagreen")
-    ax4.legend(loc="upper left",frameon=False)
+    #ax4.legend(loc="upper left",frameon=True)
     ax4.set_xlabel("Generation")
     ax4.set_ylabel("Fitness maximum value")
+    ax4.title.set_text("MAX FITNESS")
     plt.pause(0.5)
 
 def init_plot(char_class):
     fig.suptitle('Stats for class {char_class}'.format(char_class=char_class), fontsize=16)
-    # ax1.scatter(x_vals, fit_min_vals, label="Fitness minimum value",color="cornflowerblue")
-    # ax1.legend(loc="upper left",frameon=False)
-    
-    # ax2.scatter(x_vals, fit_mean_vals, label="Fitness mean value",color="indianred")
-    # ax2.legend(loc="upper left",frameon=False)
-    
-    # ax3.scatter(x_vals, gen_div_vals, label="Genetic diversity value",color="darkorange")
-    # ax3.legend(loc="upper left",frameon=False)
-    
+ 
 
 def show():
     plt.show()

@@ -43,7 +43,7 @@ class ItemHandler:
     def getRandomItem(self, class_name):
         df, item_class = self.file_map[class_name]
 
-        random_int = self.getRandomNumber(len(df.index))
+        random_int = self.getRandomNumber(len(df.index)-1)
         row = df.loc[random_int]
 
         return item_class(random_int, row.Fu, row.Ag, row.Ex, row.Re, row.Vi)

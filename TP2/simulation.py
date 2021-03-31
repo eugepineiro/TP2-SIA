@@ -111,7 +111,9 @@ def solutionCut(data_handler, item_handler, characters, graph, iteration_func): 
 
 
 def cutting(data_handler, item_handler, characters, iteration_func): # cutting_method, cutting_param, data,
+    
     graph = plotter
+    graph.init_plot(data_handler.character_class)
     graph.update_plots(0,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters),max(map(lambda character: character.fitness,characters)))
 
     if data_handler.cutting_method == GENERATION_CUT:
