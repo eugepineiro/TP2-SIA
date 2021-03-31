@@ -89,7 +89,7 @@ Una vez arrancado el programa, se abrirá una ventana mostrando gráficos en tie
     "individual_mutation_probability": 0.3,
     "implementation": "fill_parent",
     "population_amount": 200,
-    "individuals_amount": 300
+    "individuals_amount": 300,
     "path_to_files": ""
 }
 ```
