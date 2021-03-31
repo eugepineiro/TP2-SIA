@@ -49,6 +49,7 @@ def generationCut(data_handler, item_handler, characters, plotter, iteration_fun
     cant_gens = data_handler.cutting_param
     for i in range(cant_gens):
         characters = iteration_func(data_handler, item_handler, characters, plotter, i)
+    return characters
 
 def timeCut(data_handler, item_handler, characters, plotter, iteration_func): # max_time
     max_time = data_handler.cutting_param
@@ -58,6 +59,7 @@ def timeCut(data_handler, item_handler, characters, plotter, iteration_func): # 
         characters = iteration_func(data_handler, item_handler, characters, plotter, generation)
         generation += 1
         end = time.time()
+    return characters
 
 def contentCut(data_handler, item_handler, characters, plotter, iteration_func): # max_generation
     max_generation = data_handler.cutting_param
@@ -77,6 +79,7 @@ def contentCut(data_handler, item_handler, characters, plotter, iteration_func):
             gen_counter += 1
 
         generation += 1
+    return characters
 
 def structureCut(data_handler, item_handler, characters, plotter, iteration_func): # max_diversity
     max_diversity = data_handler.cutting_param
@@ -95,6 +98,7 @@ def structureCut(data_handler, item_handler, characters, plotter, iteration_func
             gen_counter += 1
 
         generation += 1
+    return characters
 
 def solutionCut(data_handler, item_handler, characters, graph, iteration_func): # min_fitness
     min_fitness = data_handler.cutting_param
@@ -104,9 +108,10 @@ def solutionCut(data_handler, item_handler, characters, graph, iteration_func): 
         characters = iteration_func(data_handler, item_handler, characters, plotter, generation)
         avg_fit = avg_fitness(characters)
         if avg_fit >= min_fitness:
-            return
+            return characters
 
         generation += 1
+        
     
 
 
@@ -115,20 +120,26 @@ def cutting(data_handler, item_handler, characters, iteration_func): # cutting_m
     graph = plotter
     graph.init_plot(data_handler.character_class)
     graph.update_plots(0,min(map(lambda character: character.fitness,characters)),avg_fitness(characters),get_diversity(characters),max(map(lambda character: character.fitness,characters)))
-
+    final_characters = None
     if data_handler.cutting_method == GENERATION_CUT:
-        generationCut(data_handler, item_handler, characters, graph, iteration_func)
+        final_characters= generationCut(data_handler, item_handler, characters, graph, iteration_func)
     elif data_handler.cutting_method == TIME_CUT:
-        timeCut(data_handler, item_handler, characters, graph, iteration_func)
+        final_characters = timeCut(data_handler, item_handler, characters, graph, iteration_func)
     elif data_handler.cutting_method == CONTENT_CUT:
-        contentCut(data_handler, item_handler, characters, graph, iteration_func)
+        final_characters = contentCut(data_handler, item_handler, characters, graph, iteration_func)
     elif data_handler.cutting_method == STRUCTURE_CUT:
-        structureCut(data_handler, item_handler, characters, graph, iteration_func)
+        final_characters = structureCut(data_handler, item_handler, characters, graph, iteration_func)
     elif data_handler.cutting_method == SOLUTION_CUT:
-        solutionCut(data_handler, item_handler, characters, graph, iteration_func)
+        final_characters = solutionCut(data_handler, item_handler, characters, graph, iteration_func)
     else:
         return
-
+    best = final_characters[0]
+    for character in final_characters[1:]:
+        if character.fitness > best.fitness:
+            best = character
+    print(best)
+    for item in best.equipment.items():
+        print(item)
     graph.show()
 
 def runIteration(data_handler, item_handler, characters, plotter, generation):
