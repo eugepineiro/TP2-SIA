@@ -29,5 +29,12 @@
     "cutting_condition": {
         "method": "generation",
         "parameter": 100
-    }    
+    }, 
+    "dataset_path": {
+        "weapons": "TP2/allitems/armas.tsv", 
+        "helmets": "TP2/allitems/cascos.tsv", 
+        "gloves": "TP2/allitems/guantes.tsv", 
+        "boots": "TP2/allitems/botas.tsv",
+        "armors": "TP2/allitems/pecheras.tsv"
+    } 
 }

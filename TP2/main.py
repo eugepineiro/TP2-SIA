@@ -33,8 +33,7 @@ from methods.implementations import replacement
 # Impl
 
 # file_list = [('TP2/allitems/armas-short.tsv', Weapon), ('TP2/allitems/botas-short.tsv', Boots), ('TP2/allitems/cascos-short.tsv', Helmet), ('TP2/allitems/guantes-short.tsv', Gloves), ('TP2/allitems/pecheras-short.tsv', Armor)]
-file_list = [('TP2/allitems/armas.tsv', Weapon), ('TP2/allitems/botas.tsv', Boots), ('TP2/allitems/cascos.tsv', Helmet), ('TP2/allitems/guantes.tsv', Gloves), ('TP2/allitems/pecheras.tsv', Armor)]
-item_handler = ItemHandler(file_list) 
+
 data = None
 
 def avg_fitness(characters):
@@ -47,7 +46,8 @@ with open('TP2/config.json', 'r') as json_file:
     data_handler = DataHandler(data)
     # population_amount = data['population_amount']
     # character_class = data['class']
-
+file_list = [(data_handler.dataset_weapons, Weapon), (data_handler.dataset_boots, Boots), (data_handler.dataset_helmets, Helmet), (data_handler.dataset_gloves, Gloves), (data_handler.dataset_armors, Armor)]
+item_handler = ItemHandler(file_list) 
 # Build Generation 0
 characters = []
 for i in range(data_handler.population_amount):

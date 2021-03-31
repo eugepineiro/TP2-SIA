@@ -27,6 +27,11 @@ class DataHandler:
         self.boltzmann_t0 = data["methods"]["selection_params"]["boltzmann_temp"]["t0"]
         self.boltzmann_tc = data["methods"]["selection_params"]["boltzmann_temp"]["tc"]
         self.boltzmann_k = data["methods"]["selection_params"]["boltzmann_temp"]["k"]
+        self.dataset_weapons =  data["dataset_path"]["weapons"]
+        self.dataset_boots =  data["dataset_path"]["boots"]
+        self.dataset_helmets =  data["dataset_path"]["helmets"]
+        self.dataset_gloves =  data["dataset_path"]["gloves"]
+        self.dataset_armors =  data["dataset_path"]["armors"]
 
 
     def selection(self, method, characters, ind_amount, pop_amount, generation):
