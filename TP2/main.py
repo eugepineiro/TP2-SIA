@@ -18,7 +18,6 @@
 import json, random
 # Population
 from Characters.character import Character
-from Characters.character_class import CharacterClass
 from simulation import runSimulation
 from item_handler import ItemHandler
 from Items.armor import Armor
@@ -28,7 +27,7 @@ from Items.helmet import Helmet
 from Items.weapon import Weapon
 from constants import *
 import plotter, math
-from data_handler import mutation, selection, crossover
+from data_handler import DataHandler
 from methods.mutations import MutationLib
 from methods.implementations import replacement
 # Impl
@@ -45,17 +44,18 @@ def avg_fitness(characters):
 
 with open('TP2/config.json', 'r') as json_file:
     data = json.load(json_file)
-    population_amount = data['population_amount']
-    character_class = data['class']
+    data_handler = DataHandler(data)
+    # population_amount = data['population_amount']
+    # character_class = data['class']
 
 # Build Generation 0
 characters = []
-for i in range(population_amount):
+for i in range(data_handler.population_amount):
     equipment = item_handler.getEquipment()
     char = None
     height = random.uniform(MIN_HEIGHT, MAX_HEIGHT)
-    char = Character(i, height, equipment, CharacterClass[character_class.upper()])
+    char = Character(i, height, equipment, data_handler.character_class)
     characters.append(char)
     # print(char)
 
-runSimulation(data, item_handler, characters)
+runSimulation(data_handler, item_handler, characters)
