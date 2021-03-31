@@ -85,14 +85,11 @@ def ranking(characters, individuals_amount, population_amount):
         selected_chars.append(id_char_dict.get(id))
     return selected_chars
 
-T0 = 50
-Tc = 10
-TEMP_CONST = 2
-def boltzmann(characters, individuals_amount, population_amount, generation):
+def boltzmann(characters, individuals_amount, population_amount, generation,t0,tc,k):
     
     aux_chars = []
     id_char_dict = {}
-    temp = Tc + (T0 - Tc) * math.exp(-TEMP_CONST * generation)
+    temp = tc + (t0 - tc) * math.exp(-k * generation)
     pop_avg = calculatePopAvg(characters,temp)
 
     for i, character in enumerate(characters):

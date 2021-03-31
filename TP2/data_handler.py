@@ -23,6 +23,11 @@ class DataHandler:
         self.threshold = data["methods"]["selection_params"]["p_tournaments_threshold"] 
         self.cutting_method = data["cutting_condition"]["method"]
         self.cutting_param = data["cutting_condition"]["parameter"]
+        self.d_tournaments_m = data["methods"]["selection_params"]["d_tournaments_m"]
+        self.boltzmann_t0 = data["methods"]["selection_params"]["boltzmann_temp"]["t0"]
+        self.boltzmann_tc = data["methods"]["selection_params"]["boltzmann_temp"]["tc"]
+        self.boltzmann_k = data["methods"]["selection_params"]["boltzmann_temp"]["k"]
+
 
     def selection(self, method, characters, ind_amount, pop_amount, generation):
 
@@ -35,11 +40,9 @@ class DataHandler:
         elif method == RANKING_S: 
             return ranking(characters,ind_amount,pop_amount)
         elif method == BOLTZMANN: 
-            return boltzmann(characters, ind_amount, pop_amount, generation)
+            return boltzmann(characters, ind_amount, pop_amount, generation,self.boltzmann_t0,self.boltzmann_tc,self.boltzmann_k)
         elif method == D_TOURNAMENTS_S:
-            #TODO: CHANGE 
-            m_value = 10 
-            return d_tournaments(characters, ind_amount, pop_amount, m_value)
+            return d_tournaments(characters, ind_amount, pop_amount, self.d_tournaments_m)
         elif method == P_TOURNAMENTS_S: 
             return p_tournaments(characters,ind_amount, pop_amount, self.threshold)
         
