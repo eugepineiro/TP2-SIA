@@ -1,9 +1,9 @@
 {
-    "class": "spy",
+    "class": "warrior",
     "implementation": "fill_all",
     "population_amount": 1000,
     "individuals_amount": 500,
-    "individual_mutation_probability": 0.5,
+    "individual_mutation_probability": 0.2,
     "methods": {
         "crossover": "uniform",
         "mutation": "uniform_multigen", 

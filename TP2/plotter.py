@@ -55,6 +55,27 @@ def init_plot(char_class):
     fig.suptitle('Stats for class {char_class}'.format(char_class=char_class), fontsize=16)
  
 
-def show():
+def show():  
+    with open('min.txt', 'w') as f:
+        for min in fit_min_vals: 
+            f.write(min)
+            f.write('\n')
+            
+    with open('max.txt', 'w') as f:
+        for max in fit_max_vals: 
+            f.write(max)
+            f.write('\n')
+            
+    with open('mean.txt', 'w') as f:
+        for mean in fit_mean_vals: 
+            f.write(mean)
+            f.write('\n')  
+            
+    with open('diversity.txt', 'w') as f:
+        for div in gen_div_vals: 
+            f.write(div)
+            f.write('\n')
+             
     plt.show()
+    
 
