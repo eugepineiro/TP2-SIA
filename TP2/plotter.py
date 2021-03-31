@@ -8,10 +8,7 @@ fit_mean_vals = []  # fitness mean value
 gen_div_vals = []  # genetic diversity value
 fit_max_vals = []  # fitness maximum value
 
-fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2,figsize=(12,8))
-
-
-
+fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2,figsize=(12,8)) #2 rows y 2 cols --> 4 graphs 
 
 
 def update_plots(generation, fit_min, fit_mean, gen_div,fit_max):

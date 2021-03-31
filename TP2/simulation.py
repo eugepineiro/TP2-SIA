@@ -140,13 +140,14 @@ def runIteration(data, item_handler, characters, plotter, generation):
     replacement_prob = data["methods"]["replacement_prob"]
     implementation = data["implementation"]
     crossover_func = data["methods"]["crossover"] 
+    threshold = data["methods"]["selection_params"]["p_tournaments_threshold"] 
 
     # Parents Selection 
     print("-------------------- SELECTION ----------------------")
     first_cut = math.floor(individuals_amount*selection_prob)
     second_cut = math.ceil(individuals_amount*(1-selection_prob))
-    parents1 = selection(selection_method_a, characters, first_cut,population_amount, generation+1)
-    parents2 = selection(selection_method_b, characters, second_cut,population_amount, generation+1)
+    parents1 = selection(selection_method_a, characters, first_cut,population_amount, generation+1, threshold)
+    parents2 = selection(selection_method_b, characters, second_cut,population_amount, generation+1, threshold)
     parents = parents1 + parents2
     # print(parents)
     # print(len(parents))

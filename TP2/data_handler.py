@@ -3,7 +3,7 @@ from methods.mutations import oneGenMutation, completeMutation, limitedMultigenM
 from methods.selections import elite, roulette, universal, ranking, boltzmann, d_tournaments, p_tournaments
 from methods.crossovers import onePointCross, twoPointsCross, annularCross, uniformCross
 
-def selection(method, characters, individuals_amount, population_amount, generation):
+def selection(method, characters, individuals_amount, population_amount, generation, threshold):
 
     if method == ELITE_S :
         return elite(characters, individuals_amount, population_amount)
@@ -20,7 +20,7 @@ def selection(method, characters, individuals_amount, population_amount, generat
         m_value = 10 
         return d_tournaments(characters, individuals_amount, population_amount, m_value)
     elif method == P_TOURNAMENTS_S: 
-        return p_tournaments(characters,individuals_amount,population_amount)
+        return p_tournaments(characters,individuals_amount,population_amount, threshold)
     
 
 

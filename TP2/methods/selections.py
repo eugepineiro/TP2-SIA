@@ -123,13 +123,17 @@ def d_tournaments(characters, individuals_amount, population_amount, m_value):
             if char.fitness > selected.fitness:
                 selected = char
         selected_characters.append(selected)
+    
+    print(selected_characters)
     return selected_characters
 
-def p_tournaments(characters, individuals_amount, population_amount):
+def p_tournaments(characters, individuals_amount, population_amount, threshold):
     selected_characters = []
     for i in range(individuals_amount):
-        #TODO: CHEQUEAR
-        threshold = random.uniform(0.5,1)
+        
+        if threshold < 0.5 or threshold > 1:
+            raise ValueError("Probabilistic Tournaments threshold must be between 0.5 and 1")
+        
         chars = sorted([characters[random.randint(0,population_amount-1)],characters[random.randint(0,population_amount-1)]],key=lambda char: char.fitness, reverse=True)
         r = random.uniform(0,1)
         if r < threshold:

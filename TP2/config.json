@@ -2,13 +2,25 @@
     "class": "warrior",
     "methods": {
         "crossover": "uniform",
-        "mutation": "one_gen",
+        "mutation": "one_gen", 
+        "mutation_params": {
+            "limited_multigen_limit": 3
+        },
         "selection_a": "ranking",
         "selection_b": "d_tournaments",
         "selection_prob": 0.6, 
         "replacement_a": "p_tournaments",
         "replacement_b": "elite",
-        "replacement_prob": 0.8
+        "replacement_prob": 0.8,
+        "selection_params": {
+            "p_tournaments_threshold": 0.5, 
+            "d_tournaments_m": 3,
+            "boltzmann_temp": {
+                "t0": 50,
+                "tc": 10, 
+                "k": 2
+            } 
+        }
     },
     "cutting_condition": {
         "method": "generation",
