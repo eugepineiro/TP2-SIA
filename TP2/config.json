@@ -1,23 +1,23 @@
 {
-    "class": "warrior",
-    "implementation": "fill_parent",
-    "population_amount": 1000,
-    "individuals_amount": 500,
-    "individual_mutation_probability": 0.05,
+    "class": "spy",
+    "implementation": "fill_all",
+    "population_amount": 300,
+    "individuals_amount": 200,
+    "individual_mutation_probability": 0.3,
     "methods": {
-        "crossover": "one_point",
+        "crossover": "uniform",
         "mutation": "uniform_multigen", 
         "mutation_params": {
             "limited_multigen_limit": 3
         },
-        "selection_a": "elite",
-        "selection_b": "roulette",
-        "selection_prob": 0.9, 
+        "selection_a": "boltzmann",
+        "selection_b": "elite",
+        "selection_prob": 0.2,
         "replacement_a": "elite",
-        "replacement_b": "elite",
-        "replacement_prob": 0.9,
+        "replacement_b": "universal",
+        "replacement_prob": 0.7,
         "selection_params": {
-            "p_tournaments_threshold": 0.7, 
+            "p_tournaments_threshold": 0.8,
             "d_tournaments_m": 50,
             "boltzmann_temp": {
                 "t0": 50,
@@ -27,8 +27,8 @@
         }
     },
     "cutting_condition": {
-        "method": "structure",
-        "parameter": 80,
+        "method": "generation",
+        "parameter": 100,
         "structure_max_generations": 5
     }, 
     "dataset_path": {
