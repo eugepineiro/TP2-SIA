@@ -60,36 +60,42 @@ Una vez arrancado el programa, se abrirá una ventana mostrando gráficos en tie
 ```json
 {
     "class": "warrior",
+    "implementation": "fill_all",
+    "population_amount": 1000,
+    "individuals_amount": 500,
+    "individual_mutation_probability": 0.2,
     "methods": {
-        "crossover": "uniform",
+        "crossover": "two_points",
         "mutation": "one_gen", 
         "mutation_params": {
             "limited_multigen_limit": 3
         },
-        "selection_a": "ranking",
-        "selection_b": "d_tournaments",
-        "selection_prob": 0.6, 
-        "replacement_a": "p_tournaments",
-        "replacement_b": "elite",
-        "replacement_prob": 0.8,
+        "selection_a": "elite",
+        "selection_b": "roulette",
+        "selection_prob": 0.2, 
+        "replacement_a": "elite",
+        "replacement_b": "d_tournaments",
+        "replacement_prob": 0.4,
         "selection_params": {
-            "p_tournaments_threshold": 0.5, 
-            "d_tournaments_m": 3,
+            "p_tournaments_threshold": 0.7, 
+            "d_tournaments_m": 50,
             "boltzmann_temp": {
                 "t0": 50,
                 "tc": 10, 
-                "k": 2
+                "k": 0.3
             } 
         }
     },
     "cutting_condition": {
         "method": "generation",
         "parameter": 100
-    },
-    "individual_mutation_probability": 0.3,
-    "implementation": "fill_parent",
-    "population_amount": 200,
-    "individuals_amount": 300,
-    "path_to_files": ""
+    }, 
+    "dataset_path": {
+        "weapons": "TP2/allitems/armas.tsv",
+        "helmets": "TP2/allitems/cascos.tsv",
+        "gloves": "TP2/allitems/guantes.tsv",
+        "boots": "TP2/allitems/botas.tsv",
+        "armors": "TP2/allitems/pecheras.tsv"
+    } 
 }
 ```
