@@ -1,8 +1,8 @@
 {
     "class": "warrior",
     "implementation": "fill_all",
-    "population_amount": 1000,
-    "individuals_amount": 500,
+    "population_amount": 300,
+    "individuals_amount": 200,
     "individual_mutation_probability": 0.2,
     "methods": {
         "crossover": "uniform",
@@ -10,12 +10,12 @@
         "mutation_params": {
             "limited_multigen_limit": 3
         },
-        "selection_a": "boltzmann",
-        "selection_b": "d_tournaments",
-        "selection_prob": 0.7, 
+        "selection_a": "universal",
+        "selection_b": "boltzmann",
+        "selection_prob": 0.5, 
         "replacement_a": "elite",
-        "replacement_b": "universal",
-        "replacement_prob": 0.6,
+        "replacement_b": "d_tournaments",
+        "replacement_prob": 0.5,
         "selection_params": {
             "p_tournaments_threshold": 0.7, 
             "d_tournaments_m": 50,
@@ -27,13 +27,14 @@
         }
     },
     "cutting_condition": {
-        "method": "generation",
-        "parameter": 100
+        "method": "structure",
+        "parameter": 80,
+        "structure_max_generations": 5
     }, 
     "dataset_path": {
-        "weapons": "TP2/allitems/armas.tsv", 
-        "helmets": "TP2/allitems/cascos.tsv", 
-        "gloves": "TP2/allitems/guantes.tsv", 
+        "weapons": "TP2/allitems/armas.tsv",
+        "helmets": "TP2/allitems/cascos.tsv",
+        "gloves": "TP2/allitems/guantes.tsv",
         "boots": "TP2/allitems/botas.tsv",
         "armors": "TP2/allitems/pecheras.tsv"
     } 
