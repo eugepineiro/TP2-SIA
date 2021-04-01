@@ -14,6 +14,7 @@ class DataHandler:
         self.selection_method_a = data["methods"]["selection_a"]
         self.selection_method_b = data["methods"]["selection_b"]
         self.mutation_method = data["methods"]["mutation"]
+        self.limited_multigen_limit = data["methods"]["mutation_params"]["limited_multigen_limit"]
         self.replacement_a = data["methods"]["replacement_a"]
         self.replacement_b = data["methods"]["replacement_b"]
         self.selection_prob = data["methods"]["selection_prob"]
@@ -61,7 +62,7 @@ class DataHandler:
         elif self.mutation_method == COMPLETE_M: 
             return completeMutation(individual, item_handler)
         elif self.mutation_method == LIMITED_MULTIGEN_M:
-            return limitedMultigenMutation(individual, item_handler)
+            return limitedMultigenMutation(individual, item_handler, self.limited_multigen_limit)
         elif self.mutation_method == UNIFORM_MULTIGEN_M: 
             return uniformMultigenMutation(individual, item_handler, self.individual_mutation_probability)
 

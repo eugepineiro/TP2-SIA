@@ -39,10 +39,12 @@ def completeMutation(individual, item_handler):
     return mutated_individual
 
 #Selects M random genes to mutate 
-M = 3
-def limitedMultigenMutation(individual, item_handler):
+def limitedMultigenMutation(individual, item_handler, M):
     equipment_dict = individual.equipment
-    height = individual.height
+    height = individual.height 
+    
+    if M <=0 or M >= 6:
+            raise ValueError("Limited Multigen Mutation mutates between 1 and 5 genes")
     #genes_to_mutate_amount = random.randint(1,M). # Selects x genes to mutate, x in [1, M], M is small
     genes = [individual.height] + individual.getEquipment()
 

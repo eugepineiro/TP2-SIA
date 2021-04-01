@@ -1,23 +1,23 @@
 {
-    "class": "spy",
+    "class": "warrior",
     "implementation": "fill_all",
-    "population_amount": 300,
-    "individuals_amount": 200,
-    "individual_mutation_probability": 0.3,
+    "population_amount": 1000,
+    "individuals_amount": 500,
+    "individual_mutation_probability": 0.2,
     "methods": {
         "crossover": "uniform",
-        "mutation": "uniform_multigen", 
+        "mutation": "limited_multigen", 
         "mutation_params": {
-            "limited_multigen_limit": 3
+            "limited_multigen_limit": 5
         },
         "selection_a": "boltzmann",
-        "selection_b": "elite",
-        "selection_prob": 0.2,
+        "selection_b": "d_tournaments",
+        "selection_prob": 0.7, 
         "replacement_a": "elite",
         "replacement_b": "universal",
-        "replacement_prob": 0.7,
+        "replacement_prob": 0.6,
         "selection_params": {
-            "p_tournaments_threshold": 0.8,
+            "p_tournaments_threshold": 0.7, 
             "d_tournaments_m": 50,
             "boltzmann_temp": {
                 "t0": 50,
@@ -28,14 +28,14 @@
     },
     "cutting_condition": {
         "method": "generation",
-        "parameter": 100,
-        "structure_max_generations": 5
+        "parameter": 50, 
+        "structure_max_generations": 5 
     }, 
     "dataset_path": {
-        "weapons": "TP2/allitems/armas.tsv",
-        "helmets": "TP2/allitems/cascos.tsv",
-        "gloves": "TP2/allitems/guantes.tsv",
+        "weapons": "TP2/allitems/armas.tsv", 
+        "helmets": "TP2/allitems/cascos.tsv", 
+        "gloves": "TP2/allitems/guantes.tsv", 
         "boots": "TP2/allitems/botas.tsv",
         "armors": "TP2/allitems/pecheras.tsv"
-    } 
+    }  
 }

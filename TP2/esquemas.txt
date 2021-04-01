@@ -38,6 +38,8 @@
         "armors": "TP2/allitems/pecheras.tsv"
     } 
 
+Busco esquemas cortos, de fitness alto y orden bajo 
+Creo que mutando un gen específico, me deja todos los otros fijos --> tendría este esquema: *11111
 
 MUTO SOLO H
 
@@ -63,7 +65,7 @@ Best character is
 ('Gloves', Id: 419802 - Force: 0.6935255378108431 - Agility: 1.9504381750953357 - Expertise: 1.9474931816918435 - resistance: 3.183568002122737 - Life: 2.106943506495712)
 ('Armor', Id: 318375 - Force: 6.34597455094238 - Agility: 1.3767836226245582 - Expertise: 10.898861048352934 - resistance: 9.03712924732154 - Life: 12.10023712728309)
 
-muto solo armor 
+MUTO SOLO ARMOR 
 
 Best character is
 (Id: 472 - Fitness: 24.230881536880947 - Class: WARRIOR)
@@ -85,8 +87,7 @@ MUTO SOLO GLOVES
 ('Helmet', Id: 755136 - Force: 10.600227431836355 - Agility: 5.433837431747965 - Expertise: 7.574391621004926 - resistance: 1.007516026517493 - Life: 4.298099848966987)
 ('Gloves', Id: 135969 - Force: 5.953095521075089 - Agility: 1.4028124965713091 - Expertise: 1.256972567114157 - resistance: 0.3014500411008868 - Life: 0.6524296241082582)
 ('Armor', Id: 517774 - Force: 12.880706843022208 - Agility: 17.53536965869234 - Expertise: 7.019461624066634 - resistance: 1.0537887525847545 - Life: 0.1294610494475717)
-Best character is
-(Id: 472 - Fitness: 24.230881536880947 - Class: WARRIOR)
+
 
 muto solo boots
 
@@ -111,3 +112,30 @@ Best character is
 ('Helmet', Id: 324794 - Force: 2.2289497356539574 - Agility: 0.2236416708560146 - Expertise: 15.037888166529685 - resistance: 10.529353498869906 - Life: 1.944165987450553)
 ('Gloves', Id: 541471 - Force: 1.6308037330553888 - Agility: 1.764974657253835 - Expertise: 2.780472251049201 - resistance: 0.0319929780512286 - Life: 2.6936816086871107)
 ('Armor', Id: 696625 - Force: 12.394378026995351 - Agility: 0.6790343023472402 - Expertise: 8.628435917752874 - resistance: 8.01618395060667 - Life: 9.48374886708331)
+
+Con la misma config 
+el que mayor fitness me dio fue mutar SOLO Height y dejar los otros fijos
+el que menor fitness me dio fue mutar SOLO weapon --> pareciera que weapon es importante. 
+
+El problema es mi orden es muy alto. 
+Me voy al otro extremo 
+
+*****1
+
+Usando la misma config que antes pero mutando 5 hardcodeados
+
+EL GEN DEFINIDO ES HEIGHT 
+
+EL GEN DEFINIDO ES WEAPON 
+
+EL GEN DEFINIDO ES ARMOR
+
+EL GEN DEFINIDO ES GLOVES
+
+EL GEN DEFINIDO ES Boots
+
+EL GEN DEFINIDO ES helmet
+
+
+
+
