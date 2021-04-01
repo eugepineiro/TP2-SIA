@@ -7,6 +7,13 @@ def internal_crossover(parents1, parents2, char_class, genes_selector):
     i = 0
     genes_cant = len(parents1[0].getEquipment()) + 1
     children = []
+     
+    
+    if(len(parents1)%2 == 1):  
+        parents2.append(parents2[0])
+    elif(len(parents2)%2 == 1):
+        parents1.append(parents1[0])
+    
     for p1, p2 in zip(parents1, parents2):
         genes1 = [p1.height]+p1.getEquipment()
         genes2 = [p2.height]+p2.getEquipment()

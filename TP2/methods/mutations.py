@@ -49,11 +49,11 @@ def limitedMultigenMutation(individual, item_handler, M):
     genes = [individual.height] + individual.getEquipment()
 
     genes_to_mutate = random.sample(genes, M)
-
+    #genes_to_mutate = [HELMET_CLASS, HEIGHT_CLASS, ARMOR_CLASS, GLOVES_CLASS, BOOTS_CLASS]
     for gen in genes_to_mutate:
         gen_class = gen.__class__.__name__
         new_gen = MutationLib.getNewGen(gen_class, item_handler)
-        # print(gen_class)
+   
         if gen_class == HEIGHT_CLASS:
             height = new_gen
         else:

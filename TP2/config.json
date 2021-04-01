@@ -6,7 +6,7 @@
     "individual_mutation_probability": 0.2,
     "methods": {
         "crossover": "uniform",
-        "mutation": "limited_multigen", 
+        "mutation": "uniform_multigen", 
         "mutation_params": {
             "limited_multigen_limit": 5
         },
@@ -28,7 +28,7 @@
     },
     "cutting_condition": {
         "method": "generation",
-        "parameter": 50, 
+        "parameter": 100, 
         "structure_max_generations": 5 
     }, 
     "dataset_path": {

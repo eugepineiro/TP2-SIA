@@ -125,8 +125,18 @@ Me voy al otro extremo
 Usando la misma config que antes pero mutando 5 hardcodeados
 
 EL GEN DEFINIDO ES HEIGHT 
+Best character is
+(Id: 212 - Fitness: 24.39198880875904 - Class: WARRIOR)
+Best character is
+(Id: 293 - Fitness: 23.3430106770729 - Class: WARRIOR)
+Best character is
+(Id: 264 - Fitness: 24.327813974558257 - Class: WARRIOR)
+Best character is
+(Id: 10 - Fitness: 22.449721455738615 - Class: WARRIOR)
 
 EL GEN DEFINIDO ES WEAPON 
+Best character is
+(Id: 192 - Fitness: 22.84848550648633 - Class: WARRIOR)
 
 EL GEN DEFINIDO ES ARMOR
 
