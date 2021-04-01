@@ -1,21 +1,21 @@
 {
     "class": "warrior",
-    "implementation": "fill_all",
+    "implementation": "fill_parent",
     "population_amount": 1000,
     "individuals_amount": 500,
-    "individual_mutation_probability": 0.2,
+    "individual_mutation_probability": 0.05,
     "methods": {
-        "crossover": "uniform",
+        "crossover": "one_point",
         "mutation": "uniform_multigen", 
         "mutation_params": {
             "limited_multigen_limit": 3
         },
-        "selection_a": "boltzmann",
-        "selection_b": "d_tournaments",
-        "selection_prob": 0.7, 
+        "selection_a": "elite",
+        "selection_b": "roulette",
+        "selection_prob": 0.9, 
         "replacement_a": "elite",
-        "replacement_b": "universal",
-        "replacement_prob": 0.6,
+        "replacement_b": "elite",
+        "replacement_prob": 0.9,
         "selection_params": {
             "p_tournaments_threshold": 0.7, 
             "d_tournaments_m": 50,

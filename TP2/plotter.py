@@ -58,22 +58,22 @@ def init_plot(char_class):
 def show():  
     with open('min.txt', 'w') as f:
         for min in fit_min_vals: 
-            f.write(min)
+            f.write(str(min))
             f.write('\n')
             
     with open('max.txt', 'w') as f:
         for max in fit_max_vals: 
-            f.write(max)
+            f.write(str(max))
             f.write('\n')
             
     with open('mean.txt', 'w') as f:
         for mean in fit_mean_vals: 
-            f.write(mean)
+            f.write(str(mean))
             f.write('\n')  
             
     with open('diversity.txt', 'w') as f:
         for div in gen_div_vals: 
-            f.write(div)
+            f.write(str(div))
             f.write('\n')
              
     plt.show()

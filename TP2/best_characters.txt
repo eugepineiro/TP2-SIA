@@ -1,0 +1,20 @@
+Possible combinations of height and equipment in order to obtain the best characters: 
+
+WARRIORS: 
+Best character is
+(Id: 312 - Fitness: 27.17264524734213 - Class: WARRIOR)
+
+'Height': 1.90984
+('Weapon', Id: 472416 - Force: 25.19130934306945 - Agility: 17.493381630343592 - Expertise: 4.16772706809654 - resistance: 2.0378691180491764 - Life: 0.380585012231972)
+('Boots', Id: 849811 - Force: 3.559222482767965 - Agility: 4.927369342517983 - Expertise: 0.6465784274494657 - resistance: 0.1356442961105484 - Life: 0.6050975895486529)
+('Helmet', Id: 724097 - Force: 10.7840411981764 - Agility: 11.164077018278247 - Expertise: 4.98990714772956 - resistance: 0.6870327040523906 - Life: 0.1304180882321816)
+('Gloves', Id: 556991 - Force: 1.7336607651834122 - Agility: 3.683250825994495 - Expertise: 3.914353028990392 - resistance: 0.0712531648386978 - Life: 0.4372286349867137)
+('Armor', Id: 748853 - Force: 19.148806554548425 - Agility: 11.691948474178238 - Expertise: 8.360050065487862 - resistance: 0.470468303889119 - Life: 0.024613125940447)
+
+ARCHERS: 
+
+
+DEFENSORS:
+
+
+SPIES: 

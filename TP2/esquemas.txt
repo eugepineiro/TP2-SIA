@@ -1,0 +1,113 @@
+{
+    "class": "warrior",
+    "implementation": "fill_all",
+    "population_amount": 1000,
+    "individuals_amount": 500,
+    "individual_mutation_probability": 0.2,
+    "methods": {
+        "crossover": "uniform",
+        "mutation": "one_gen", 
+        "mutation_params": {
+            "limited_multigen_limit": 3
+        },
+        "selection_a": "boltzmann",
+        "selection_b": "d_tournaments",
+        "selection_prob": 0.7, 
+        "replacement_a": "elite",
+        "replacement_b": "universal",
+        "replacement_prob": 0.6,
+        "selection_params": {
+            "p_tournaments_threshold": 0.7, 
+            "d_tournaments_m": 50,
+            "boltzmann_temp": {
+                "t0": 50,
+                "tc": 10, 
+                "k": 0.3
+            } 
+        }
+    },
+    "cutting_condition": {
+        "method": "generation",
+        "parameter": 50
+    }, 
+    "dataset_path": {
+        "weapons": "TP2/allitems/armas.tsv", 
+        "helmets": "TP2/allitems/cascos.tsv", 
+        "gloves": "TP2/allitems/guantes.tsv", 
+        "boots": "TP2/allitems/botas.tsv",
+        "armors": "TP2/allitems/pecheras.tsv"
+    } 
+
+
+MUTO SOLO H
+
+Best character is
+(Id: 384 - Fitness: 25.02446830598518 - Class: WARRIOR)
+
+'Height': 1.63914
+('Weapon', Id: 327117 - Force: 0.344544964458475 - Agility: 2.056965790969197 - Expertise: 16.85759714020846 - resistance: 7.238538821596081 - Life: 23.29070891873109)
+('Boots', Id: 796689 - Force: 0.6345508881908293 - Agility: 0.8969237666646371 - Expertise: 3.009379652511216 - resistance: 1.6271127515092296 - Life: 3.751074315086057)
+('Helmet', Id: 882911 - Force: 0.598011467217766 - Agility: 0.1706042861477163 - Expertise: 6.134777988052926 - resistance: 12.129397099602668 - Life: 10.000276058551608)
+('Gloves', Id: 48918 - Force: 0.3477634633449303 - Agility: 1.1122201822755091 - Expertise: 0.5395382975558977 - resistance: 3.6924027505080175 - Life: 3.897105932976968)
+('Armor', Id: 463905 - Force: 2.326897492627572 - Agility: 2.337357233396661 - Expertise: 1.2073689552845266 - resistance: 17.161168433978656 - Life: 16.476985627759014)
+
+MUTO SOLO HELMET
+
+Best character is
+(Id: 371 - Fitness: 23.480671972555463 - Class: WARRIOR)
+
+'Height': 1.65777
+('Weapon', Id: 880328 - Force: 2.3936593219322373 - Agility: 2.554455145388664 - Expertise: 10.23963917675444 - resistance: 8.069534595862219 - Life: 26.6950293774398)
+('Boots', Id: 869066 - Force: 0.6146817003598141 - Agility: 1.4439999534274075 - Expertise: 0.2198743263954393 - resistance: 2.956102554362235 - Life: 4.708743614732813)
+('Helmet', Id: 94490 - Force: 0.5004913408197406 - Agility: 1.6870976374801394 - Expertise: 6.157410437137157 - resistance: 14.939415894864982 - Life: 6.64444187676611)
+('Gloves', Id: 419802 - Force: 0.6935255378108431 - Agility: 1.9504381750953357 - Expertise: 1.9474931816918435 - resistance: 3.183568002122737 - Life: 2.106943506495712)
+('Armor', Id: 318375 - Force: 6.34597455094238 - Agility: 1.3767836226245582 - Expertise: 10.898861048352934 - resistance: 9.03712924732154 - Life: 12.10023712728309)
+
+muto solo armor 
+
+Best character is
+(Id: 472 - Fitness: 24.230881536880947 - Class: WARRIOR)
+
+'Height': 1.65767
+('Weapon', Id: 715047 - Force: 1.0075703567075034 - Agility: 0.0431652716559903 - Expertise: 5.850275468665368 - resistance: 12.529043560262709 - Life: 28.53260092085591)
+('Boots', Id: 491406 - Force: 1.1333888799031049 - Agility: 0.7037749258544492 - Expertise: 2.856834351074016 - resistance: 0.1098419875982341 - Life: 5.138639231693918)
+('Helmet', Id: 152050 - Force: 7.469549442463678 - Agility: 0.3368557173791638 - Expertise: 8.513995350982771 - resistance: 8.542101796107808 - Life: 5.007449896979989)
+('Gloves', Id: 763072 - Force: 1.8081810527439004 - Agility: 0.0991825144399863 - Expertise: 2.2625395959793866 - resistance: 3.699237563809445 - Life: 1.7525165894826058)
+('Armor', Id: 677125 - Force: 0.7106646552699392 - Agility: 0.8898921596330496 - Expertise: 3.585665095434797 - resistance: 19.852742627566805 - Life: 13.32106127814943)
+
+
+MUTO SOLO GLOVES
+(Id: 285 - Fitness: 22.900590563725494 - Class: WARRIOR)
+
+'Height': 1.89477
+('Weapon', Id: 274538 - Force: 15.606930925315726 - Agility: 15.457429696049942 - Expertise: 9.214268512992414 - resistance: 1.1481472076124513 - Life: 6.527382429017025)
+('Boots', Id: 178971 - Force: 2.863727903919769 - Agility: 0.8532338891659682 - Expertise: 3.5823168969561703 - resistance: 0.8092345233387597 - Life: 1.8007185094879423)
+('Helmet', Id: 755136 - Force: 10.600227431836355 - Agility: 5.433837431747965 - Expertise: 7.574391621004926 - resistance: 1.007516026517493 - Life: 4.298099848966987)
+('Gloves', Id: 135969 - Force: 5.953095521075089 - Agility: 1.4028124965713091 - Expertise: 1.256972567114157 - resistance: 0.3014500411008868 - Life: 0.6524296241082582)
+('Armor', Id: 517774 - Force: 12.880706843022208 - Agility: 17.53536965869234 - Expertise: 7.019461624066634 - resistance: 1.0537887525847545 - Life: 0.1294610494475717)
+Best character is
+(Id: 472 - Fitness: 24.230881536880947 - Class: WARRIOR)
+
+muto solo boots
+
+Best character is
+(Id: 88 - Fitness: 23.719436193075275 - Class: WARRIOR)
+
+'Height': 1.67071
+('Weapon', Id: 779529 - Force: 1.933327204292636 - Agility: 1.193558973678326 - Expertise: 14.448028993236044 - resistance: 13.059325409031452 - Life: 17.936109883105413)
+('Boots', Id: 506340 - Force: 0.2670415860062783 - Agility: 0.3240204574540492 - Expertise: 0.8488833474366156 - resistance: 3.5779515838433853 - Life: 4.779713851121811)
+('Helmet', Id: 321117 - Force: 1.922698158158889 - Agility: 0.0225156767890323 - Expertise: 5.832321716895715 - resistance: 10.806461300167822 - Life: 9.259788669265802)
+('Gloves', Id: 216175 - Force: 0.1180778120361635 - Agility: 0.4515765073468314 - Expertise: 2.7391472772933656 - resistance: 3.604137066969956 - Life: 3.086960435183773)
+('Armor', Id: 840114 - Force: 3.9534763359423937 - Agility: 0.3038448956336602 - Expertise: 9.592184280338104 - resistance: 9.26128295982038 - Life: 15.437396492354305)
+}
+
+MUTO SOLO WEAPON
+Best character is
+(Id: 103 - Fitness: 21.515154837000942 - Class: WARRIOR)
+
+'Height': 1.61948
+('Weapon', Id: 856706 - Force: 0.4456240932946819 - Agility: 2.335935764026812 - Expertise: 0.8368026126360524 - resistance: 16.90002834236147 - Life: 28.24573434928347)
+('Boots', Id: 280893 - Force: 1.0978060359912116 - Agility: 2.0646194481620115 - Expertise: 2.116038502992294 - resistance: 1.9391664051761093 - Life: 2.254772187763486)
+('Helmet', Id: 324794 - Force: 2.2289497356539574 - Agility: 0.2236416708560146 - Expertise: 15.037888166529685 - resistance: 10.529353498869906 - Life: 1.944165987450553)
+('Gloves', Id: 541471 - Force: 1.6308037330553888 - Agility: 1.764974657253835 - Expertise: 2.780472251049201 - resistance: 0.0319929780512286 - Life: 2.6936816086871107)
+('Armor', Id: 696625 - Force: 12.394378026995351 - Agility: 0.6790343023472402 - Expertise: 8.628435917752874 - resistance: 8.01618395060667 - Life: 9.48374886708331)
