@@ -91,7 +91,7 @@ def contentCut(data_handler, item_handler, characters, plotter, iteration_func):
 
 def structureCut(data_handler, item_handler, characters, plotter, iteration_func): # max_diversity
     max_diversity = data_handler.cutting_param
-    MAX_GENERATIONS = 20 
+    MAX_GENERATIONS = data_handler.structure_max_generations 
     generation = 0
     gen_counter = 0
 

@@ -27,13 +27,14 @@
         }
     },
     "cutting_condition": {
-        "method": "generation",
-        "parameter": 100
+        "method": "structure",
+        "parameter": 80,
+        "structure_max_generations": 5
     }, 
     "dataset_path": {
-        "weapons": "TP2/allitems/armas.tsv", 
-        "helmets": "TP2/allitems/cascos.tsv", 
-        "gloves": "TP2/allitems/guantes.tsv", 
+        "weapons": "TP2/allitems/armas.tsv",
+        "helmets": "TP2/allitems/cascos.tsv",
+        "gloves": "TP2/allitems/guantes.tsv",
         "boots": "TP2/allitems/botas.tsv",
         "armors": "TP2/allitems/pecheras.tsv"
     } 

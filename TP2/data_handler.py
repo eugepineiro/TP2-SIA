@@ -23,6 +23,7 @@ class DataHandler:
         self.threshold = data["methods"]["selection_params"]["p_tournaments_threshold"] 
         self.cutting_method = data["cutting_condition"]["method"]
         self.cutting_param = data["cutting_condition"]["parameter"]
+        self.structure_max_generations = data["cutting_condition"]["structure_max_generations"]
         self.d_tournaments_m = data["methods"]["selection_params"]["d_tournaments_m"]
         self.boltzmann_t0 = data["methods"]["selection_params"]["boltzmann_temp"]["t0"]
         self.boltzmann_tc = data["methods"]["selection_params"]["boltzmann_temp"]["tc"]
