@@ -45,8 +45,7 @@ Dentro del archivo `config.json`, que está en el directorio raíz del proyecto,
 |   | "boltzmann_temp": contiene los parámetros que se van a utilizar para la función de temperatura del método de selección boltzmann: `tc + (t0 - tc) exp(-k*t)` | "t0": temperatura inicial, "tc": temperatura cota, "k": constante de la temperatura |
 | "cutting_condition" | abarca los métodos de corte y los parámetros que recibe cada uno | |
 |  | "method": "time" | "parameter": tiempo en segundos|
-|  | "method": "generation" | "parameter": cantidad de generaciones |
-|  | "method": "time" | "parameter": tiempo en segundos|
+|  | "method": "generation" | "parameter": cantidad de generaciones | 
 |  | "method": "content" | "parameter": cantidad de generaciones en las que el mejor fitness no cambia |
 |  | "method": "structure" | "parameter": porcentaje de la población que no cambia en una cantidad de generaciones, la cual se puede establecer con la opción ""structure_max_generations" |
 |  | "method": "solution" | "parameter": valor de fitness medio que se considera como solución aceptable |
