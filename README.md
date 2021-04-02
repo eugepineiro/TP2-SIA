@@ -39,8 +39,7 @@ Dentro del archivo `config.json`, que está en el directorio raíz del proyecto,
 |   | "replacement_a":  tipo de selección que se quiere hacer para reemplazar una porción de la población | elite, roulette, universal, ranking, boltzmann, d_tournaments, p_tournaments |
 |   | "replacement_b":  tipo de selección que se quiere hacer para el resto de la población | elite, roulette, universal, ranking, boltzmann, d_tournaments, p_tournaments |
 |   |"replacement_prob": indica qué porcentaje de la población se reemplaza con replacement_a y qué porcentaje se reemplaza con replacement_b con la ecuación: `replacement_prob * replacement_a + (1-replacement_prob) * replacement_b`| número entre [0,1]|
-|  "selection_params" | parámetros que se van a utilizar para los métodos de selección |  |
-|   | "p_tournaments_threshold": threshold para el método de selección p_tournaments | número entre [0.5, 1] |
+|  "selection_params" | parámetros que se van a utilizar para los métodos de selección |  | 
 |   | "p_tournaments_threshold": threshold para el método de selección p_tournaments | número entre [0.5, 1] |
 |   | "d_tournaments_m": establece la cantidad de personajes de los cuales se selecciona en cada iteracion del método de selección d_tournaments | número < tamaño de la población |
 |   | "boltzmann_temp": contiene los parámetros que se van a utilizar para la función de temperatura del método de selección boltzmann: `tc + (t0 - tc) exp(-k*t)` | "t0": temperatura inicial, "tc": temperatura cota, "k": constante de la temperatura |
