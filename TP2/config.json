@@ -1,23 +1,23 @@
 {
-    "class": "warrior",
-    "implementation": "fill_all",
-    "population_amount": 1000,
-    "individuals_amount": 500,
-    "individual_mutation_probability": 0.2,
+    "class": "spy",
+    "implementation": "fill_parent",
+    "population_amount": 600,
+    "individuals_amount": 400,
+    "individual_mutation_probability": 0.5,
     "methods": {
         "crossover": "uniform",
-        "mutation": "uniform_multigen", 
+        "mutation": "one_gen", 
         "mutation_params": {
             "limited_multigen_limit": 5
         },
-        "selection_a": "boltzmann",
-        "selection_b": "d_tournaments",
-        "selection_prob": 0.7, 
-        "replacement_a": "elite",
+        "selection_a": "elite",
+        "selection_b": "p_tournaments",
+        "selection_prob": 0.2, 
+        "replacement_a": "ranking",
         "replacement_b": "universal",
         "replacement_prob": 0.6,
         "selection_params": {
-            "p_tournaments_threshold": 0.7, 
+            "p_tournaments_threshold": 0.6, 
             "d_tournaments_m": 50,
             "boltzmann_temp": {
                 "t0": 50,
@@ -27,9 +27,9 @@
         }
     },
     "cutting_condition": {
-        "method": "generation",
-        "parameter": 100, 
-        "structure_max_generations": 5 
+        "method": "solution",
+        "parameter": 24, 
+        "structure_max_generations": 100 
     }, 
     "dataset_path": {
         "weapons": "TP2/allitems/armas.tsv", 
